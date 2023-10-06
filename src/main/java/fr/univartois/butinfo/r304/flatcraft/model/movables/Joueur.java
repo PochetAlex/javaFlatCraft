@@ -17,4 +17,34 @@ public class Joueur extends AbstractMovable {
 		this.pdv = pdv;
 		inventaire = FXCollections.observableHashMap();
 	}
+	public IntegerProperty getExp() {
+		return exp;
+	}
+	
+	public IntegerProperty getPdv() {
+		return pdv;
+	}
+	
+	public ObservableMap<Resource, Integer> getInventaire(){
+		return inventaire;
+	}
+	
+	public void setExp(IntegerProperty exp) {
+		this.exp = exp;
+	}
+	
+	public void setPdv(IntegerProperty pdv) {
+		this.pdv = pdv;
+	}
+	public void setInventaire(ObservableMap<Resource, Integer> inventaire) {
+		this.inventaire = inventaire;
+	}
+	
+	public void ajouterElementInventaire(Resource ressource, int quantite) {
+		inventaire.put(ressource, quantite);
+	}
+	
+	public void supprimerElementInventaire(Resource ressource) {
+		inventaire.remove(ressource);
+	}
 }
