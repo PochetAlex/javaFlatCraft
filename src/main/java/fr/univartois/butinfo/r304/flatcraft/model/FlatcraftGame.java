@@ -184,14 +184,16 @@ public final class FlatcraftGame {
      * Fait se déplacer le joueur vers la gauche.
      */
     public void moveLeft() {
-        // TODO Implémentez cette méthode.
+        player.setHorizontalSpeed(-60);
+        move(player);
     }
 
     /**
      * Fait se déplacer le joueur vers la droite.
      */
     public void moveRight() {
-        // TODO Implémentez cette méthode.
+    	player.setHorizontalSpeed(+60);
+    	move(player);
     }
 
     /**
@@ -213,7 +215,8 @@ public final class FlatcraftGame {
      * Interrompt le déplacement du joueur.
      */
     public void stopMoving() {
-        // TODO Implémentez cette méthode.
+        player.setHorizontalSpeed(0);
+        move(player);
     }
 
     /**
@@ -234,21 +237,36 @@ public final class FlatcraftGame {
      * Fait creuser le joueur vers le bas.
      */
     public void digDown() {
-        // TODO Implémentez cette méthode.
+        Cell cellule = getCellOf(player);
+        if (cellule.getRow() < map.getHeight()) {
+        	Cell vise = map.getAt(cellule.getRow()+1,cellule.getColumn());
+        	dig(vise);
+        	move(player);
+        }
     }
 
     /**
      * Fait creuser le joueur vers la gauche.
      */
     public void digLeft() {
-        // TODO Implémentez cette méthode.
+    	Cell cellule = getCellOf(player);
+        if (cellule.getColumn() > 0) {
+        	Cell vise = map.getAt(cellule.getRow(),cellule.getColumn()-1);
+        	dig(vise);
+        	move(player);
+        }
     }
 
     /**
      * Fait creuser le joueur vers la droite.
      */
     public void digRight() {
-        // TODO Implémentez cette méthode.
+    	Cell cellule = getCellOf(player);
+        if (cellule.getColumn() < map.getWidth()) {
+        	Cell vise = map.getAt(cellule.getRow(),cellule.getColumn()+1);
+        	dig(vise);
+        	move(player);
+        }
     }
 
     /**
@@ -257,7 +275,9 @@ public final class FlatcraftGame {
      * @param toDig La cellule sur laquelle creuser.
      */
     private void dig(Cell toDig) {
-        // TODO Implémentez cette méthode.
+        if(toDig.dig(player)) {
+        	toDig.replaceBy(cellFactory.createSky());
+        }
     }
 
     /**
