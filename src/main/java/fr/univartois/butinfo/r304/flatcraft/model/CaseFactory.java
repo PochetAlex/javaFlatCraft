@@ -56,14 +56,14 @@ public class CaseFactory implements CellFactory{
 
 	@Override
 	public Cell createTrunk() {
-		// TODO Auto-generated method stub
-		return null;
+		Case cel = new Case(spriteStore.getSprite("defaut_acacia_tree"));
+		return cel;
 	}
 
 	@Override
 	public Cell createLeaves() {
-		// TODO Auto-generated method stub
-		return null;
+		Case cel = new Case(spriteStore.getSprite("defaut_acacia_leaves"));
+		return cel;
 	}
 
 }
