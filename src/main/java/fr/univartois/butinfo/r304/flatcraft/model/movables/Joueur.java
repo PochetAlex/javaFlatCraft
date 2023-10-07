@@ -18,12 +18,12 @@ public class Joueur extends AbstractMovable {
 		pdv = new SimpleIntegerProperty(100);
 		inventaire = FXCollections.observableHashMap();
 	}
-	public IntegerProperty getExp() {
-		return exp;
+	public int getExp() {
+		return exp.get();
 	}
 	
-	public IntegerProperty getPdv() {
-		return pdv;
+	public int getPdv() {
+		return pdv.get();
 	}
 	
 	public IntegerProperty expProperty() {
@@ -38,12 +38,12 @@ public class Joueur extends AbstractMovable {
 		return inventaire;
 	}
 	
-	public void setExp(IntegerProperty exp) {
-		this.exp = exp;
+	public void setExp(int v) {
+		exp.set(v);
 	}
 	
-	public void setPdv(IntegerProperty pdv) {
-		this.pdv = pdv;
+	public void setPdv(int v) {
+		pdv.set(v);
 	}
 	public void setInventaire(ObservableMap<Resource, Integer> inventaire) {
 		this.inventaire = inventaire;
