@@ -19,11 +19,17 @@ package fr.univartois.butinfo.r304.flatcraft.model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.ToolType;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+import javafx.scene.control.ListView;
 
 /**
  * La classe {@link FlatcraftGame} permet de gérer une partie du jeu Flatcraft.
@@ -77,7 +83,7 @@ public final class FlatcraftGame {
     /**
      * La représentation du joueur.
      */
-    private IMovable player;
+    private Joueur player;
 
     /**
      * La liste des objets mobiles du jeu.
@@ -140,16 +146,20 @@ public final class FlatcraftGame {
         // On crée la carte du jeu.
         map = createMap();
         controller.prepare(map);
-
-        // TODO On crée le joueur, qui se trouve sur le sol à gauche de la carte.
-
-        // TODO On fait le lien entre les différentes propriétés et leur affichage.
-
-        // On démarre l'animation du jeu.
+        
+        Joueur j = new Joueur(null, height, height, null);
+        movableObjects.add(j);
+        controller.addMovable(j);
+        
+        controller.bindTime(time);
+        controller.bindLevel(level);
+        controller.bindXP(j.expProperty());
+        controller.bindHealth(j.pdvProperty());
+ 
         animation.start();
     }
 
-    /**
+	/**
      * Crée la carte du jeu.
      *
      * @return La carte du jeu créée.
