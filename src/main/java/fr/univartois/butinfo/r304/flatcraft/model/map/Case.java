@@ -1,10 +1,11 @@
 package fr.univartois.butinfo.r304.flatcraft.model.map;
 
 import fr.univartois.butinfo.r304.flatcraft.model.IMovable;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 
-public class Case extends AbstractCell{
+public class Case extends AbstractCell {
 
 	protected Case(int row, int column) {
 		super(row, column);
@@ -20,9 +21,9 @@ public class Case extends AbstractCell{
 
 	@Override
 	public boolean move(IMovable movable) {
-		if (this.getResource()==null) {
-			movable.setX(getRow()*this.getSprite().getWidth());
-			movable.setY(getColumn()*this.getSprite().getHeight());
+		if (this.getResource() == null) {
+			movable.setY(getRow() * this.getSprite().getHeight());
+			movable.setX(getColumn() * this.getSprite().getHeight());
 			return true;
 		}
 		return false;
@@ -30,11 +31,16 @@ public class Case extends AbstractCell{
 
 	@Override
 	public boolean dig(Joueur player) {
-		this.getResource().dig();
-		if (this.getResource().getHardness()==0) {
-			player.ajouterElementInventaire(this.getResource());
-			return true;
+		if (this.getResource() != null) {
+			System.out.println(this.getResource().getHardness());
+			this.getResource().dig();
+			if (this.getResource().getHardness() == 0) {
+				player.ajouterElementInventaire(this.getResource(), 1);
+
+				return true;
+			}
 		}
+
 		return false;
 	}
 
