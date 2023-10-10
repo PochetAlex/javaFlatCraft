@@ -49,8 +49,11 @@ public class Joueur extends AbstractMovable {
 		this.inventaire = inventaire;
 	}
 	public void ajouterElementInventaire(Resource ressource, int quantite) {
-        if (inventaire.get(ressource) == 0) {
-            inventaire.put(ressource, quantite);
+		if (inventaire.get(ressource) == null) {
+			inventaire.put(ressource, quantite);
+		}
+		else {
+            inventaire.put(ressource, quantite+inventaire.get(ressource));
         }
 	}
 	public void supprimerElementInventaire(Resource ressource) {
