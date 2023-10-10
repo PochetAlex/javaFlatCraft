@@ -2,6 +2,8 @@ package fr.univartois.butinfo.r304.flatcraft.model;
 
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+
 import java.util.Random;
 
 public class CaseFactory implements CellFactory{
@@ -25,10 +27,10 @@ public class CaseFactory implements CellFactory{
         int n = r.nextInt(5);
         Case cel;
         if (n < 2) {
-        	cel = new Case(spriteStore.getSprite("default_cloud"));
+        	cel = new Case(spriteStore.getSprite("default_obsidian_glass_detail"));
         }
         else {
-        	cel = new Case(spriteStore.getSprite("air"));
+        	cel = new Case(spriteStore.getSprite("default_obsidian_glass_detail"));
         }
 		return cel;
 	}
@@ -36,33 +38,28 @@ public class CaseFactory implements CellFactory{
 	@Override
 	public Cell createSoilSurface() {
 		// TODO Auto-generated method stub
-		Random r = new Random();
-        int n = r.nextInt(5);
         Case cel;
-        if (n == 1) cel = new Case(spriteStore.getSprite("default_brick"));
-        else if (n == 2) cel = new Case(spriteStore.getSprite("default_dirt"));
-        else if (n == 3) cel = new Case(spriteStore.getSprite("default_grass"));
-        else if (n == 4) cel = new Case(spriteStore.getSprite("default_sand"));
-        else cel = new Case(spriteStore.getSprite("default_water"));
+        Resource re = new Resource("a",spriteStore.getSprite("default_grass"),null,1);
+        cel = new Case(re);
 		return cel;
 	}
 
 	@Override
 	public Cell createSubSoil() {
 		// TODO Auto-generated method stub
-        Case cel = new Case(spriteStore.getSprite("defaut_cobble"));
+        Case cel = new Case(new Resource("a",spriteStore.getSprite("default_dirt"),null,1));
 		return cel;
 	}
 
 	@Override
 	public Cell createTrunk() {
-		Case cel = new Case(spriteStore.getSprite("defaut_acacia_tree"));
+		Case cel = new Case(new Resource("a",spriteStore.getSprite("default_acacia_tree"),null,1));
 		return cel;
 	}
 
 	@Override
 	public Cell createLeaves() {
-		Case cel = new Case(spriteStore.getSprite("defaut_acacia_leaves"));
+		Case cel = new Case(new Resource("a",spriteStore.getSprite("default_acacia_leaves"),null,1));
 		return cel;
 	}
 

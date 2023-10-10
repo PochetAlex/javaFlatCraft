@@ -19,17 +19,13 @@ package fr.univartois.butinfo.r304.flatcraft.model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
+import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.ToolType;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
-import javafx.scene.control.ListView;
 
 /**
  * La classe {@link FlatcraftGame} permet de gérer une partie du jeu Flatcraft.
@@ -147,14 +143,14 @@ public final class FlatcraftGame {
         map = createMap();
         controller.prepare(map);
         
-        Joueur j = new Joueur(null, height, height, null);
-        movableObjects.add(j);
-        controller.addMovable(j);
+        player = new Joueur(this, 0, map.getSoilHeight()*16-16, spriteStore.getSprite("player"));
+        movableObjects.add(player);
+        controller.addMovable(player);
         
         controller.bindTime(time);
         controller.bindLevel(level);
-        controller.bindXP(j.expProperty());
-        controller.bindHealth(j.pdvProperty());
+        controller.bindXP(player.expProperty());
+        controller.bindHealth(player.pdvProperty());
  
         animation.start();
     }
@@ -165,8 +161,8 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-    	GenerateGameMap map2 = null;
-    	GameMap map = map2.createCarte(height/16, width/16);
+    	GenerateGameMap map2 = new GenerateGameMap(height/16, width/16);
+    	GameMap map = map2.returnMapCreate(spriteStore);
         return map;
     }
 
@@ -255,6 +251,7 @@ public final class FlatcraftGame {
         	dig(vise);
         	move(player);
         }
+        
     }
 
     /**

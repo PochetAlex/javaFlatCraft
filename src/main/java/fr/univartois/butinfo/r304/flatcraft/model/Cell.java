@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.r304.flatcraft.model;
 
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.ObjectProperty;
@@ -98,6 +99,6 @@ public interface Cell {
      *
      * @return Si une ressource a été extraite.
      */
-    boolean dig(IMovable player);
+    boolean dig(Joueur player);
 
 }
