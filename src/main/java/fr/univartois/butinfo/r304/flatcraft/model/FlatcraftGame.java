@@ -37,6 +37,8 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public final class FlatcraftGame {
 
+	private IGenerateGameMap iMap;
+	
     /**
      * La largeur de la carte du jeu affichée (en pixels).
      */
@@ -117,8 +119,14 @@ public final class FlatcraftGame {
     public int getWidth() {
         return width;
     }
+    
+    
 
-    /**
+	public void setiMap(IGenerateGameMap iMap) {
+		this.iMap = iMap;
+	}
+
+	/**
      * Donne la hauteur de la carte du jeu affichée (en pixels).
      *
      * @return La hauteur de la carte du jeu affichée (en pixels).
@@ -162,8 +170,7 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-    	IGenerateGameMap map2 = new GenerateGameMap(height/16, width/16);
-    	GameMap map = map2.returnMapCreate(spriteStore);
+    	GameMap map = iMap.returnMapCreate(spriteStore);
         return map;
     }
 
