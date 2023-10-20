@@ -19,6 +19,9 @@ package fr.univartois.butinfo.r304.flatcraft.model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
+import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
@@ -76,7 +79,7 @@ public final class FlatcraftGame {
     /**
      * La représentation du joueur.
      */
-    private IMovable player;
+    private Joueur player;
 
     /**
      * La liste des objets mobiles du jeu.
@@ -139,23 +142,28 @@ public final class FlatcraftGame {
         // On crée la carte du jeu.
         map = createMap();
         controller.prepare(map);
-
-        // TODO On crée le joueur, qui se trouve sur le sol à gauche de la carte.
-
-        // TODO On fait le lien entre les différentes propriétés et leur affichage.
-
-        // On démarre l'animation du jeu.
+        
+        player = new Joueur(this, 0, map.getSoilHeight()*16-16, spriteStore.getSprite("player"));
+        movableObjects.add(player);
+        controller.addMovable(player);
+        
+        controller.bindTime(time);
+        controller.bindLevel(level);
+        controller.bindXP(player.expProperty());
+        controller.bindHealth(player.pdvProperty());
+ 
         animation.start();
     }
 
-    /**
+	/**
      * Crée la carte du jeu.
      *
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-        // TODO Implémentez cette méthode.
-        return null;
+    	GenerateGameMap map2 = new GenerateGameMap(height/16, width/16);
+    	GameMap map = map2.returnMapCreate(spriteStore);
+        return map;
     }
 
     /**
@@ -184,14 +192,16 @@ public final class FlatcraftGame {
      * Fait se déplacer le joueur vers la gauche.
      */
     public void moveLeft() {
-        // TODO Implémentez cette méthode.
+        player.setHorizontalSpeed(-60);
+        move(player);
     }
 
     /**
      * Fait se déplacer le joueur vers la droite.
      */
     public void moveRight() {
-        // TODO Implémentez cette méthode.
+    	player.setHorizontalSpeed(+60);
+    	move(player);
     }
 
     /**
@@ -213,7 +223,8 @@ public final class FlatcraftGame {
      * Interrompt le déplacement du joueur.
      */
     public void stopMoving() {
-        // TODO Implémentez cette méthode.
+        player.setHorizontalSpeed(0);
+        move(player);
     }
 
     /**
@@ -234,21 +245,37 @@ public final class FlatcraftGame {
      * Fait creuser le joueur vers le bas.
      */
     public void digDown() {
-        // TODO Implémentez cette méthode.
+        Cell cellule = getCellOf(player);
+        if (cellule.getRow() < map.getHeight()) {
+        	Cell vise = map.getAt(cellule.getRow()+1,cellule.getColumn());
+        	dig(vise);
+        	move(player);
+        }
+        
     }
 
     /**
      * Fait creuser le joueur vers la gauche.
      */
     public void digLeft() {
-        // TODO Implémentez cette méthode.
+    	Cell cellule = getCellOf(player);
+        if (cellule.getColumn() > 0) {
+        	Cell vise = map.getAt(cellule.getRow(),cellule.getColumn()-1);
+        	dig(vise);
+        	move(player);
+        }
     }
 
     /**
      * Fait creuser le joueur vers la droite.
      */
     public void digRight() {
-        // TODO Implémentez cette méthode.
+    	Cell cellule = getCellOf(player);
+        if (cellule.getColumn() < map.getWidth()) {
+        	Cell vise = map.getAt(cellule.getRow(),cellule.getColumn()+1);
+        	dig(vise);
+        	move(player);
+        }
     }
 
     /**
@@ -257,7 +284,9 @@ public final class FlatcraftGame {
      * @param toDig La cellule sur laquelle creuser.
      */
     private void dig(Cell toDig) {
-        // TODO Implémentez cette méthode.
+        if(toDig.dig(player)) {
+        	toDig.replaceBy(cellFactory.createSky());
+        }
     }
 
     /**
