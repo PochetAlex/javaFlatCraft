@@ -21,6 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.map.IGenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
@@ -36,6 +37,8 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public final class FlatcraftGame {
 
+	private IGenerateGameMap iMap;
+	
     /**
      * La largeur de la carte du jeu affichée (en pixels).
      */
@@ -116,8 +119,14 @@ public final class FlatcraftGame {
     public int getWidth() {
         return width;
     }
+    
+    
 
-    /**
+	public void setiMap(IGenerateGameMap iMap) {
+		this.iMap = iMap;
+	}
+
+	/**
      * Donne la hauteur de la carte du jeu affichée (en pixels).
      *
      * @return La hauteur de la carte du jeu affichée (en pixels).
@@ -161,8 +170,7 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-    	GenerateGameMap map2 = new GenerateGameMap(height/16, width/16);
-    	GameMap map = map2.returnMapCreate(spriteStore);
+    	GameMap map = iMap.returnMapCreate(spriteStore);
         return map;
     }
 

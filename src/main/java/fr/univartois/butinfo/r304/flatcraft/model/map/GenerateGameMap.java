@@ -4,7 +4,7 @@ import fr.univartois.butinfo.r304.flatcraft.model.CaseFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 
-public class GenerateGameMap {
+public class GenerateGameMap implements IGenerateGameMap {
 
 	private int hauteur,largeur;
 	private CellFactory cell;
@@ -17,6 +17,7 @@ public class GenerateGameMap {
 		this.gameMap = new SimpleGameMap(hauteur, largeur, hauteur/2);
 	}
 	
+	@Override
 	public SimpleGameMap returnMapCreate(ISpriteStore sprite ) {
 		this.sprite = sprite;
 		this.cell = new CaseFactory(sprite);
