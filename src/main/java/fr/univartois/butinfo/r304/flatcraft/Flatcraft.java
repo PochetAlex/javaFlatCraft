@@ -21,6 +21,7 @@ import java.io.IOException;
 import fr.univartois.butinfo.r304.flatcraft.controller.FlatcraftController;
 import fr.univartois.butinfo.r304.flatcraft.model.CaseFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
+import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -63,6 +64,7 @@ public final class Flatcraft extends Application {
         // On crée ensuite le jeu, que l'on lie au contrôleur.
         // TODO Utiliser ici la bonne factory pour créer les objets du jeu.
         FlatcraftGame game = new FlatcraftGame(GAME_WIDTH, GAME_HEIGHT, new SpriteStore(), new CaseFactory(null));
+        game.setiMap(new GenerateGameMap(GAME_HEIGHT/16,GAME_WIDTH/16));
         controller.setGame(game);
         game.setController(controller);
         game.prepare();
