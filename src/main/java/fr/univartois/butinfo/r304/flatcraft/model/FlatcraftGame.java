@@ -21,6 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.map.IGenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
@@ -161,7 +162,7 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-    	GenerateGameMap map2 = new GenerateGameMap(height/16, width/16);
+    	IGenerateGameMap map2 = new GenerateGameMap(height/16, width/16);
     	GameMap map = map2.returnMapCreate(spriteStore);
         return map;
     }
