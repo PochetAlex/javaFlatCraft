@@ -30,9 +30,7 @@ public class DimensionNether implements CellFactory {
 		return cel;
 	}
 
-	@Override
 	public Cell createSoilSurface() {
-		// TODO Auto-generated method stub
         Case cel;
         Resource re = new Resource("a",spriteStore.getSprite("default_obsidian_brick"),null,1);
         cel = new Case(re);

@@ -17,7 +17,6 @@ public class DimensionEnd implements CellFactory {
 	}
 	@Override
 	public Cell createSky() {
-		// TODO Auto-generated method stub
 		Random r = new Random();
         int n = r.nextInt(5);
         Case cel;
