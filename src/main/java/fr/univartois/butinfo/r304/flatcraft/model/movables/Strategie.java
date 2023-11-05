@@ -2,5 +2,7 @@ package fr.univartois.butinfo.r304.flatcraft.model.movables;
 
 public interface Strategie {
 	
-	public void faconMove(int vitesse,Mob mob);
+	public static int faconMove(double vitesse,Mob mob, long delta) {
+		return 0;
+	}
 }
