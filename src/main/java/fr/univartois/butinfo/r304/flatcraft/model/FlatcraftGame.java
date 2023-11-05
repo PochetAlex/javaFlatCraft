@@ -23,6 +23,7 @@ import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.map.IGenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
@@ -83,6 +84,8 @@ public final class FlatcraftGame {
      * La représentation du joueur.
      */
     private Joueur player;
+    
+    private Mob mob;
 
     /**
      * La liste des objets mobiles du jeu.
@@ -155,6 +158,10 @@ public final class FlatcraftGame {
         player = new Joueur(this, 0, map.getSoilHeight()*16-16, spriteStore.getSprite("player"));
         movableObjects.add(player);
         controller.addMovable(player);
+        
+        mob = new Mob(this, 50, map.getSoilHeight()*16-16, spriteStore.getSprite("default_nc_front"), 50);
+        movableObjects.add(mob);
+        controller.addMovable(mob);
         
         controller.bindTime(time);
         controller.bindLevel(level);
