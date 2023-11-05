@@ -5,19 +5,20 @@ import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Mob extends AbstractMovable{
+public class Mob extends AbstractMovable {
 
 	private IntegerProperty pdv;
-	public Mob(FlatcraftGame game, double xPosition, double yPosition, Sprite sprite,int pdv) {
+
+	public Mob(FlatcraftGame game, double xPosition, double yPosition, Sprite sprite, int pdv) {
 		super(game, xPosition, yPosition, sprite);
 		this.pdv = new SimpleIntegerProperty(pdv);
-	}
-	
-	public boolean move(long delta) {
 		setHorizontalSpeed(24);
+	}
+
+	public boolean move(long delta) {
+		
+		setHorizontalSpeed(DeplacementAlea.faconMove(this.getHorizontalSpeed(), this, delta));
 		return super.move(delta);
-    }
-	
-	
+	}
 
 }
