@@ -16,8 +16,11 @@ public class Mob extends AbstractMovable {
 	}
 
 	public boolean move(long delta) {
-		
-		setHorizontalSpeed(DeplacementAlea.faconMove(this.getHorizontalSpeed(), this, delta));
+		if (!super.move(delta)) {
+			setHorizontalSpeed(DeplacementLineaire.faconMove(this.getHorizontalSpeed(), this, delta));
+			return super.move(delta);
+		}
+		setHorizontalSpeed(DeplacementAleatoireParSequence.faconMove(this.getHorizontalSpeed(), this, delta));
 		return super.move(delta);
 	}
 
