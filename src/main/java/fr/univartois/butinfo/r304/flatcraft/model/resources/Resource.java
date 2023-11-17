@@ -42,7 +42,7 @@ public final class Resource {
     /**
      * Le sprite représentant cette ressource.
      */
-    private final Sprite sprite;
+    private final IEtatRessource sprite;
 
     /**
      * Le type d'outils nécessaire pour extraire cette ressource de la carte.
@@ -66,7 +66,7 @@ public final class Resource {
      *
      * @throws IllegalArgumentException Si la valeur de {@code hardness} est négative.
      */
-    public Resource(String name, Sprite sprite, ToolType toolType, BreakABlock hardness) {
+    public Resource(String name, IEtatRessource sprite, ToolType toolType, BreakABlock hardness) {
 
         this.name = name;
         this.sprite = sprite;
@@ -89,7 +89,7 @@ public final class Resource {
      * @return Le sprite représentant cette ressource.
      */
     public Sprite getSprite() {
-        return sprite;
+        return sprite.getSprite();
     }
 
     /**
