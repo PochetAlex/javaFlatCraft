@@ -65,7 +65,7 @@ public final class Flatcraft extends Application {
 
         // On crée ensuite le jeu, que l'on lie au contrôleur.
         // TODO Utiliser ici la bonne factory pour créer les objets du jeu.
-        FlatcraftGame game = new FlatcraftGame(GAME_WIDTH, GAME_HEIGHT, new SpriteStore(), new CaseFactory(null));
+        FlatcraftGame game = new FlatcraftGame(GAME_WIDTH, GAME_HEIGHT, SpriteStore.getInstance(), CaseFactory.getInstance());
         game.setiMap(new Terril(7,new Arbre(5,5,new GenerateGameMap(GAME_HEIGHT/16,GAME_WIDTH/16))));
         controller.setGame(game);
         

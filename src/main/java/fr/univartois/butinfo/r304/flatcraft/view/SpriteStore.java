@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import fr.univartois.butinfo.r304.flatcraft.model.CaseFactory;
 import javafx.scene.image.Image;
 
 /**
@@ -37,23 +38,31 @@ public final class SpriteStore implements ISpriteStore {
      * La {@link Map} permettant de conserver en cache les différentes instances de
      * {@link Sprite} déjà chargées.
      */
-    private final Map<String, Sprite> spriteCache = new HashMap<>();
+	private final Map<String, Sprite> spriteCache = new HashMap<>();
+	private static final SpriteStore INSTANCE = new SpriteStore(); // Instance unique de la classe
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore#getSprite(java.lang.String)
+	private SpriteStore() {
+        // Constructeur privé pour empêcher l'instanciation directe depuis l'extérieur.
+    }
+	
+	public static SpriteStore getInstance() {
+        return INSTANCE;
+    }
+    
+    /**
+     * Récupère un Sprite à partir d'un identifiant.
+     * Si le Sprite est déjà en cache, il est retourné directement.
+     * Sinon, il est chargé, mis en cache, puis retourné.
+     * @param identifier L'identifiant du Sprite.
+     * @return Le Sprite correspondant à l'identifiant.
      */
     @Override
     public Sprite getSprite(String identifier) {
-        // On commence par regarder si l'instance a déjà été chargée.
         Sprite cached = spriteCache.get(identifier);
         if (cached != null) {
             return cached;
         }
 
-        // On crée maintenant l'instance de Sprite, et on la met en cache.
         Image image = loadImage(identifier);
         Sprite sprite = new Sprite(image);
         spriteCache.put(identifier, sprite);
@@ -61,22 +70,21 @@ public final class SpriteStore implements ISpriteStore {
     }
 
     /**
-     * Charge une image donnée par son nom.
-     *
+     * Charge une image à partir de son nom.
      * @param name Le nom de l'image à charger.
-     *
      * @return L'image ayant le nom donné.
-     *
      * @throws NoSuchElementException S'il n'existe pas d'image ayant le nom donné.
      */
     private Image loadImage(String name) {
         try {
-            URL urlImage = getClass().getResource("images/" + name + ".png");
+            URL urlImage = SpriteStore.class.getResource("images/" + name + ".png");
             return new Image(urlImage.toExternalForm(), getSpriteSize(), getSpriteSize(), true, true);
 
         } catch (NullPointerException | IllegalArgumentException e) {
             throw new NoSuchElementException("Could not load image " + name, e);
         }
     }
+
+
 
 }

@@ -22,7 +22,7 @@ public class Arbre implements IGenerateGameMap {
     @Override
     public SimpleGameMap returnMapCreate(ISpriteStore sprite) {
         SimpleGameMap gameMap = mapBase.returnMapCreate(sprite);
-        this.cell = new CaseFactory(sprite);
+        this.cell = CaseFactory.getInstance();
 
         for (int arbre = 0; arbre < nombreArbres; arbre++) {
             Random r = new Random();

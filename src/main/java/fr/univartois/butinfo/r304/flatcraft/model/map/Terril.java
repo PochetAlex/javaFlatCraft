@@ -20,12 +20,13 @@ public class Terril implements IGenerateGameMap {
     @Override
     public SimpleGameMap returnMapCreate(ISpriteStore sprite) {
         SimpleGameMap gameMap = mapBase.returnMapCreate(sprite);
-        this.cell = new CaseFactory(sprite);
+        this.cell = CaseFactory.getInstance();
 
         Random r = new Random();
         int hauteurSol = gameMap.getSoilHeight();
         int hauteurCourante = hauteurSol - 1;
         int largeurCourante = r.nextInt(5, gameMap.getWidth() - 15);
+        
 
         for (int taille = tailleLimite; taille >= 1; taille -= 2) {
             for (int i = 0; i < taille; i++) {
@@ -37,4 +38,6 @@ public class Terril implements IGenerateGameMap {
 
         return gameMap;
     }
+    
+
 }
