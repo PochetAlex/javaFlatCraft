@@ -159,7 +159,7 @@ public final class FlatcraftGame {
         movableObjects.add(player);
         controller.addMovable(player);
         
-        mob = new Mob(this, 50, map.getSoilHeight()*16-16, spriteStore.getSprite("default_nc_front"), 50);
+        mob = new Mob(this, 50, map.getSoilHeight()*16-16, spriteStore.getSprite("default_lava_source_animated"), 50);
         movableObjects.add(mob);
         controller.addMovable(mob);
         
