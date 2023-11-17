@@ -26,20 +26,31 @@ public class Arbre implements IGenerateGameMap {
 
         for (int arbre = 0; arbre < nombreArbres; arbre++) {
             Random r = new Random();
-            int hauteurSol = gameMap.getSoilHeight()-1;
+            int hauteurSol = gameMap.getSoilHeight() - 1;
             int position = r.nextInt(5, gameMap.getWidth() - 15);
-            int hauteurTronc = r.nextInt(1,hauteurMaxTronc);
+            int hauteurTronc = r.nextInt(1, hauteurMaxTronc);
 
             for (int i = position; i < position + 1; i++) {
                 for (int y = hauteurSol; y > hauteurSol - hauteurTronc; y--) {
                     gameMap.setAt(y, i, cell.createTrunk());
                 }
-                for (int y = hauteurSol - hauteurTronc; y > hauteurSol - hauteurTronc - 3; y--) {
-                    gameMap.setAt(y, i, cell.createLeaves());
-                }
+                addLeavesPyramid(gameMap, i, hauteurSol - hauteurTronc, 3);
             }
         }
 
         return gameMap;
+    }
+
+    private void addLeavesPyramid(SimpleGameMap gameMap, int x, int startY, int height) {
+        for (int y = startY; y > startY - height; y--) {
+            int radius = height - (startY - y);
+            for (int offsetX = -radius; offsetX <= radius; offsetX++) {
+                for (int offsetY = -radius; offsetY <= radius; offsetY++) {
+                    if (Math.abs(offsetX) + Math.abs(offsetY) <= radius) {
+                        gameMap.setAt(y, x + offsetX, cell.createLeaves());
+                    }
+                }
+            }
+        }
     }
 }
