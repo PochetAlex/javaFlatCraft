@@ -32,7 +32,7 @@ public class DimensionNether implements CellFactory {
 
 	public Cell createSoilSurface() {
         Case cel;
-        Resource re = new Resource("a",spriteStore.getSprite("default_obsidian_brick"),null,1);
+        Resource re = new Resource("a",spriteStore.getSprite("default_obsidian_brick"),null,new PasCasse());
         cel = new Case(re);
 		return cel;
 	}
@@ -40,19 +40,19 @@ public class DimensionNether implements CellFactory {
 	@Override
 	public Cell createSubSoil() {
 		// TODO Auto-generated method stub
-        Case cel = new Case(new Resource("a",spriteStore.getSprite("default_obsidian"),null,1));
+        Case cel = new Case(new Resource("a",spriteStore.getSprite("default_obsidian"),null,new PasCasse()));
 		return cel;
 	}
 
 	@Override
 	public Cell createTrunk() {
-		Case cel = new Case(new Resource("a",spriteStore.getSprite("default_acacia_tree"),null,1));
+		Case cel = new Case(new Resource("a",spriteStore.getSprite("default_acacia_tree"),null,new PresqueCasse()));
 		return cel;
 	}
 
 	@Override
 	public Cell createLeaves() {
-		Case cel = new Case(new Resource("a",spriteStore.getSprite("default_acacia_leaves"),null,1));
+		Case cel = new Case(new Resource("a",spriteStore.getSprite("default_acacia_leaves"),null,new PresqueCasse()));
 		return cel;
 	}
 

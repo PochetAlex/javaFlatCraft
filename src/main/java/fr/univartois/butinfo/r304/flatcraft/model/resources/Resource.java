@@ -18,6 +18,9 @@ package fr.univartois.butinfo.r304.flatcraft.model.resources;
 
 import java.util.Objects;
 
+import fr.univartois.butinfo.r304.flatcraft.model.BreakABlock;
+import fr.univartois.butinfo.r304.flatcraft.model.Cell;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 
 /**
@@ -51,7 +54,7 @@ public final class Resource {
      * Il s'agit du nombre de coups devant être appliqués avec un outil pour extraire
      * cette ressource depuis la map.
      */
-    private int hardness;
+    private BreakABlock hardness;
 
     /**
      * Crée une nouvelle instance de Resource.
@@ -63,10 +66,7 @@ public final class Resource {
      *
      * @throws IllegalArgumentException Si la valeur de {@code hardness} est négative.
      */
-    public Resource(String name, Sprite sprite, ToolType toolType, int hardness) {
-        if (hardness < 0) {
-            throw new IllegalArgumentException("Resource hardness should be non-negative!");
-        }
+    public Resource(String name, Sprite sprite, ToolType toolType, BreakABlock hardness) {
 
         this.name = name;
         this.sprite = sprite;
@@ -108,7 +108,7 @@ public final class Resource {
      *
      * @return La dureté de cette ressource.
      */
-    public int getHardness() {
+    public BreakABlock getHardness() {
         return hardness;
     }
 
@@ -119,11 +119,9 @@ public final class Resource {
      * @throws IllegalStateException Si la dureté de la ressource est déjà égale
      *         à {@code 0}.
      */
-    public void dig() {
-        if (hardness <= 0) {
-            throw new IllegalStateException("Cannot dig resource with 0 hardness!");
-        }
-        hardness--;
+    public void dig(Joueur joueur, Cell cell) {
+        hardness = hardness.ProchainEtat();
+        hardness.AjouterDansLinventaire(joueur,cell);
     }
 
     /**
