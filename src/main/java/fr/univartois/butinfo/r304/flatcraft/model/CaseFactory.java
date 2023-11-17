@@ -1,6 +1,7 @@
 package fr.univartois.butinfo.r304.flatcraft.model;
 
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
+import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 
@@ -9,31 +10,35 @@ import java.util.Random;
 public class CaseFactory implements CellFactory{
 	
 	private ISpriteStore spriteStore;
+    private static final CaseFactory INSTANCE = new CaseFactory(SpriteStore.getInstance());
 
-	public CaseFactory(ISpriteStore spriteStore) {
-		this.spriteStore = spriteStore;
-	}
+    private CaseFactory(ISpriteStore spriteStore) {
+        this.spriteStore = spriteStore;
+    }
 
-	@Override
+    public static CaseFactory getInstance() {
+        return INSTANCE;
+    }
+    
+    @Override
 	public void setSpriteStore(ISpriteStore spriteStore) {
-		this.spriteStore = spriteStore;
-		
+		this.spriteStore = spriteStore;	
 	}
 
-	@Override
-	public Cell createSky() {
-		// TODO Auto-generated method stub
-		Random r = new Random();
+    @Override
+    public Cell createSky() {
+    	// TODO Auto-generated method stub
+
+        Random r = new Random();
         int n = r.nextInt(5);
         Case cel;
         if (n < 2) {
-        	cel = new Case(spriteStore.getSprite("default_obsidian_glass_detail"));
+            cel = new Case(spriteStore.getSprite("default_obsidian_glass_detail"));
+        } else {
+            cel = new Case(spriteStore.getSprite("default_obsidian_glass_detail"));
         }
-        else {
-        	cel = new Case(spriteStore.getSprite("default_obsidian_glass_detail"));
-        }
-		return cel;
-	}
+        return cel;
+    }
 
 	@Override
 	public Cell createSoilSurface() {

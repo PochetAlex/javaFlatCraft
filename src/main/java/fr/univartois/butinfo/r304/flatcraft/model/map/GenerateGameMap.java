@@ -20,7 +20,7 @@ public class GenerateGameMap implements IGenerateGameMap {
 	@Override
 	public SimpleGameMap returnMapCreate(ISpriteStore sprite ) {
 		this.sprite = sprite;
-		this.cell = new CaseFactory(sprite);
+		this.cell = CaseFactory.getInstance();
 		for(int i = 0; i<largeur; i++) {
 			for(int y=0; y< hauteur; y++) {
 				if(y>hauteur/2) {
