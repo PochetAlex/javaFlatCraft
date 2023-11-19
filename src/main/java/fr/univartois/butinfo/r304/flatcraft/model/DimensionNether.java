@@ -26,7 +26,7 @@ public class DimensionNether implements CellFactory {
 		this.spriteStore = spriteStore;	
 	}
 	@Override
-	public Cell createSky() {
+	public Cell createSky(int y, int i) {
 		// TODO Auto-generated method stub
 		Random r = new Random();
         int n = r.nextInt(5);

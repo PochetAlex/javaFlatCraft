@@ -43,7 +43,7 @@ public interface CellFactory {
      *
      * @return La cellule créée.
      */
-    Cell createSky();
+    Cell createSky(int y, int i);
 
     /**
      * Crée une cellule représentant la surface du sol.
