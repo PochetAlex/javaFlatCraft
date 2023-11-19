@@ -1,5 +1,6 @@
 package fr.univartois.butinfo.r304.flatcraft.model.map;
 
+import fr.univartois.butinfo.r304.flatcraft.model.CompletementCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.IMovable;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
@@ -37,6 +38,12 @@ public class Case extends AbstractCell {
 		}
 
 		return false;
+	}
+
+	@Override
+	public void setContenuCell(CompletementCasse completementCasse) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
