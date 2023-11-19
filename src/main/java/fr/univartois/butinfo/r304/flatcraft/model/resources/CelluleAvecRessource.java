@@ -6,13 +6,14 @@ import fr.univartois.butinfo.r304.flatcraft.model.CompletementCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 
 public class CelluleAvecRessource implements IContenuCell, BreakABlock{
-	private BreakABlock block;
+	private Resource ressource;
 	public IContenuCell etatActuel() {
-		return null;		
+		return this;		
 	}
 	@Override
 	public void ajouterDansLinventaire(Joueur joueur, Cell cell) {
-		
+		joueur.ajouterElementInventaire(ressource, 1);
+		cell.setContenuCell(new CompletementCasse());
 	}
 	@Override
 	public BreakABlock prochainEtat() {
@@ -20,6 +21,6 @@ public class CelluleAvecRessource implements IContenuCell, BreakABlock{
 	}
 	@Override
 	public IContenuCell etatCellule() {
-		return null;
+		return this;
 	}
 }
