@@ -120,8 +120,8 @@ public final class Resource {
      *         à {@code 0}.
      */
     public void dig(Joueur joueur, Cell cell) {
-        hardness = hardness.ProchainEtat();
-        hardness.AjouterDansLinventaire(joueur,cell);
+        hardness = hardness.prochainEtat();
+        hardness.ajouterDansLinventaire(joueur,cell);
     }
 
     /**
