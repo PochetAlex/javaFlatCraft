@@ -30,7 +30,7 @@ public class GenerateGameMap implements IGenerateGameMap {
 					gameMap.setAt(y, i, cell.createSoilSurface());
 				}
 				if(y<hauteur/2) {
-					gameMap.setAt(y, i, cell.createSky());
+					gameMap.setAt(y, i, cell.createSky(y,i));
 				}
 			}
 		}

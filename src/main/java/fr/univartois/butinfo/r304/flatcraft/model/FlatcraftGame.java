@@ -300,7 +300,7 @@ public final class FlatcraftGame {
      */
     private void dig(Cell toDig) {
         if(toDig.dig(player)) {
-        	toDig.replaceBy(cellFactory.createSky());
+        	toDig.replaceBy(cellFactory.createSky(0, 0));
         }
     }
 
