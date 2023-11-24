@@ -1,5 +1,8 @@
 package fr.univartois.butinfo.r304.flatcraft.model.movables;
 
+
+import java.util.Optional;
+
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
@@ -61,4 +64,14 @@ public class Joueur extends AbstractMovable {
 		        	inventaire.remove(ressource);
         }
 	}
+	
+	public Optional<Resource> getRessourceParNom(String nomRessource) {
+        for (Resource ressource : inventaire.keySet()) {
+            if (ressource.getName().equals(nomRessource)) {
+                return Optional.of(ressource);
+            }
+        }
+        return Optional.empty();
+    }
+		
 }
