@@ -124,16 +124,6 @@ public final class Resource {
         hardness.ajouterDansLinventaire(joueur,cell);
     }
 
-    /**
-     * Donne la ressource obtenue lorsque cette ressource est extraite de la carte.
-     * Par défaut, la ressource obtenue ne change pas.
-     *
-     * @return La ressource obtenue après son extraction.
-     */
-    public Resource digBlock() {
-        return this;
-    }
-
     /*
      * (non-Javadoc)
      *
