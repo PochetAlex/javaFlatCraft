@@ -23,6 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.ComplicatedObject;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
 import fr.univartois.butinfo.r304.flatcraft.model.map.IGenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
@@ -332,6 +333,14 @@ public final class FlatcraftGame {
         if(!toDig.dig(player)) {
         	toDig.replaceBy(cellFactory.createSky(0, 0));
         }
+    }
+    
+    private DimensionNether createMapNether() {
+    	return new DimensionNether(spriteStore);
+    }
+    
+    private DimensionEnd createMapEnd() {
+    	return new DimensionEnd(spriteStore);
     }
 
     /**
