@@ -13,7 +13,7 @@ public class DimensionEnd implements CellFactory {
 	private InInventarie invent;
     private static final DimensionEnd INSTANCE = new DimensionEnd(SpriteStore.getInstance()); 
 
-    private DimensionEnd(ISpriteStore spriteStore) {
+    DimensionEnd(ISpriteStore spriteStore) {
         this.spriteStore = spriteStore;
     }
 

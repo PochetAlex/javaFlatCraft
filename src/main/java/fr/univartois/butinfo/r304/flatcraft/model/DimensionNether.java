@@ -13,7 +13,7 @@ public class DimensionNether implements CellFactory {
 	private InInventarie invent;
     private static final DimensionNether INSTANCE = new DimensionNether(SpriteStore.getInstance()); 
 
-    private DimensionNether(ISpriteStore spriteStore) {
+    DimensionNether(ISpriteStore spriteStore) {
         this.spriteStore = spriteStore;
     }
 
