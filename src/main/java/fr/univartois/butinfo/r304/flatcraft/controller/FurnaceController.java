@@ -46,7 +46,7 @@ public final class FurnaceController {
     /**
      * Le combustible et la ressource déposée dans le fourneau.
      */
-    private Resource[] resources;
+    private Resource[] resources = new Resource[2];
 
     /**
      * La grille représentant le fourneau dans lequel les ressources sont déposées.
@@ -159,12 +159,6 @@ public final class FurnaceController {
                 imageView.setImage(resources[index].getSprite().getImage());
             }
             imageView.setOpacity(1);
-            event.consume();
-        });
-
-        // Lorsque la ressource est déposée, elle est retirée de l'inventaire du joueur.
-        imageView.setOnDragDone(event -> {
-        	game.getPlayer().supprimerElementInventaire(resources[index]);
             event.consume();
         });
     }

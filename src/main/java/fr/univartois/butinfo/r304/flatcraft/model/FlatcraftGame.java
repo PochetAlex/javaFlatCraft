@@ -26,6 +26,7 @@ import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
+import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -159,11 +160,19 @@ public final class FlatcraftGame {
         map = createMap();
         controller.prepare(map);
         
-        player = new Joueur(this, 0, map.getSoilHeight()*16-16, spriteStore.getSprite("player"));
+        player = new Joueur(this, 0, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("player"));
         movableObjects.add(player);
         controller.addMovable(player);
         
-        mob = new Mob(this, 50, map.getSoilHeight()*16-16, spriteStore.getSprite("default_lava_source_animated"), 50);
+        mob = new Mob(this, 50, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("marjo"), 50, 0);
+        movableObjects.add(mob);
+        controller.addMovable(mob);
+        
+        mob = new Mob(this, 150, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("hugo2"), 50, 1);
+        movableObjects.add(mob);
+        controller.addMovable(mob);
+        
+        mob = new Mob(this, 300, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("caro"), 50, 2);
         movableObjects.add(mob);
         controller.addMovable(mob);
         
