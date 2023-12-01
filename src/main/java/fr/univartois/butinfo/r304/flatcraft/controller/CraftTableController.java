@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -105,8 +106,8 @@ public final class CraftTableController {
                 resourceViews[i][j] = new ImageView();
 
                 // On configure la taille appropriée pour la vue.
-                resourceViews[i][j].setFitHeight(16);
-                resourceViews[i][j].setFitWidth(16);
+                resourceViews[i][j].setFitHeight(SpriteStore.getInstance().getSpriteSize());
+                resourceViews[i][j].setFitWidth(SpriteStore.getInstance().getSpriteSize());
 
                 // On positionne la vue correctement.
                 GridPane.setHalignment(resourceViews[i][j], HPos.CENTER);
@@ -176,12 +177,6 @@ public final class CraftTableController {
                 imageView.setImage(resources[row][column].getSprite().getImage());
             }
             imageView.setOpacity(1);
-            event.consume();
-        });
-
-        // Lorsque la ressource est déposée, elle est retirée de l'inventaire du joueur.
-        imageView.setOnDragDone(event -> {
-        	game.getPlayer().supprimerElementInventaire(resources[row][column]);
             event.consume();
         });
     }
