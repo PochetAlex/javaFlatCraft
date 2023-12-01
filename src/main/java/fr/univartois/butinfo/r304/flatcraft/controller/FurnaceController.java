@@ -138,8 +138,7 @@ public final class FurnaceController {
             boolean success = false;
 
             if (dragboard.hasString() && dragboard.hasImage()) {
-                // TODO Remplacez cette affectation par la récupération de la ressource dans l'inventaire du joueur.
-                Optional<Resource> resource = Optional.empty();
+                Optional<Resource> resource = game.getPlayer().getRessourceParNom(dragboard.getString());
                 if (resource.isPresent()) {
                     resources[index] = resource.get();
                     cookButton.setDisable(false);
@@ -194,7 +193,7 @@ public final class FurnaceController {
      */
     @FXML
     private void addToInventory() {
-        // TODO Récupérer le joueur ou définir une méthode pour pouvoir effectuer l'ajout.
+    	game.getPlayer().ajouterElementInventaire(product, 1);
     }
 
     /**
@@ -202,7 +201,8 @@ public final class FurnaceController {
      */
     @FXML
     private void clear() {
-        // TODO Remettre les ressources non utilisée dans l'inventaire.
+    	if(resources[0] != null) game.getPlayer().ajouterElementInventaire(resources[0], 1);
+    	if(resources[1] != null) game.getPlayer().ajouterElementInventaire(resources[1], 1);
         resources[0] = null;
         fuelView.setImage(null);
         resources[1] = null;
