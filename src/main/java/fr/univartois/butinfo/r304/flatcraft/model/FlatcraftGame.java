@@ -125,6 +125,10 @@ public final class FlatcraftGame {
     
     
 
+	public Joueur getPlayer() {
+		return player;
+	}
+
 	public void setiMap(IGenerateGameMap iMap) {
 		this.iMap = iMap;
 	}
@@ -167,6 +171,8 @@ public final class FlatcraftGame {
         controller.bindLevel(level);
         controller.bindXP(player.expProperty());
         controller.bindHealth(player.pdvProperty());
+        
+        controller.bindInventory(player.getInventaire());
  
         animation.start();
     }

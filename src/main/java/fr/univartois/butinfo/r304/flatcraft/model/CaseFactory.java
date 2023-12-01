@@ -52,7 +52,7 @@ public class CaseFactory implements CellFactory{
 	public Cell createSoilSurface() {
 		// TODO Auto-generated method stub
         Case cel;
-        Resource re = new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_grass"),null),null,new PresqueCasse());
+        Resource re = new Resource("dirt",new InInventarie(spriteStore.getSprite("default_grass"),null),null,new PresqueCasse());
         cel = new Case(re);
 		return cel;
 	}
@@ -63,23 +63,23 @@ public class CaseFactory implements CellFactory{
 		Random r = new Random();
         int n = r.nextInt(200);
         if (n < 190) {
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_cobble"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("cobble",new InInventarie(spriteStore.getSprite("default_cobble"),null),null,new PresqueCasse()));
         } else if (n == 190) {
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_mineral_diamond"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("diamond_mineral",new InInventarie(spriteStore.getSprite("default_mineral_diamond"),null),null,new PresqueCasse()));
         } else if (n == 191){
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_mineral_gold"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("gold_mineral",new InInventarie(spriteStore.getSprite("default_mineral_gold"),null),null,new PresqueCasse()));
         } else if (n == 192){
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_mineral_copper"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("copper_mineral",new InInventarie(spriteStore.getSprite("default_mineral_copper"),null),null,new PresqueCasse()));
         } else if (n == 193){
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_mineral_mese"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("mese_mineral",new InInventarie(spriteStore.getSprite("default_mineral_mese"),null),null,new PresqueCasse()));
         } else if (n == 194){
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_mineral_coal"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("coal_mineral",new InInventarie(spriteStore.getSprite("default_mineral_coal"),null),null,new PresqueCasse()));
         } else if (n == 195){
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_mineral_iron"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("iron_mineral",new InInventarie(spriteStore.getSprite("default_mineral_iron"),null),null,new PresqueCasse()));
         } else if (n == 196){
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_gravel"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("gravel",new InInventarie(spriteStore.getSprite("default_gravel"),null),null,new PresqueCasse()));
         } else {
-        	cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_cobble"),null),null,new PresqueCasse()));
+        	cel = new Case(new Resource("cobble",new InInventarie(spriteStore.getSprite("default_cobble"),null),null,new PresqueCasse()));
         }
         
 		return cel;
@@ -87,13 +87,13 @@ public class CaseFactory implements CellFactory{
 
 	@Override
 	public Cell createTrunk() {
-		Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_acacia_tree"),null),null,new PresqueCasse()));
+		Case cel = new Case(new Resource("acacia wood",new InInventarie(spriteStore.getSprite("default_acacia_tree"),null),null,new PresqueCasse()));
 		return cel;
 	}
 
 	@Override
 	public Cell createLeaves() {
-		Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),null,new PresqueCasse()));
+		Case cel = new Case(new Resource("acacia_leave",new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),null,new PresqueCasse()));
 		return cel;
 	}
 
