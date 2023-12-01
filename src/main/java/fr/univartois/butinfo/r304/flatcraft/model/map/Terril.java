@@ -29,7 +29,7 @@ public class Terril implements IGenerateGameMap {
 
         for (int taille = tailleLimite; taille >= 1; taille -= 2) {
             for (int i = 0; i < taille; i++) {
-                gameMap.setAt(hauteurCourante, largeurCourante + i, cell.createSubSoil());
+                gameMap.setAt(hauteurCourante, largeurCourante + i, cell.createSoilSurface());
             }
             hauteurCourante--;
             largeurCourante++;
