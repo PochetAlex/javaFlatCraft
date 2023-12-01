@@ -34,6 +34,8 @@ public final class RuleParser {
      */
     private final String fileName;
 
+    ComplicatedObjectBuilder builder = new ComplicatedObjectBuilder();
+    
     /**
      * Crée une nouvelle instance de RuleParser.
      *
@@ -72,7 +74,11 @@ public final class RuleParser {
      */
     private void addRule(String rule, String product, int quantity) {
         // TODO Ajoutez ici le code propre à votre application pour gérer les règles.
-    	
+    	builder.withField(rule, product, quantity);
+    }
+    
+    public ComplicatedObject getObject() {
+    	return builder.build();
     }
 
 }

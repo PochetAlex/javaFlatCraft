@@ -16,10 +16,12 @@
 
 package fr.univartois.butinfo.r304.flatcraft.model;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-
+import fr.univartois.butinfo.r304.flatcraft.model.craft.ComplicatedObject;
+import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
 import fr.univartois.butinfo.r304.flatcraft.model.map.IGenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
@@ -87,6 +89,10 @@ public final class FlatcraftGame {
     private Joueur player;
     
     private Mob mob;
+    
+    private ComplicatedObject craftableObject;
+    
+    private ComplicatedObject furnaceObject;
 
     /**
      * La liste des objets mobiles du jeu.
@@ -154,8 +160,9 @@ public final class FlatcraftGame {
 
     /**
      * Prépare la partie de Flatcraft avant qu'elle ne démarre.
+     * @throws IOException 
      */
-    public void prepare() {
+    public void prepare() throws IOException {
         // On crée la carte du jeu.
         map = createMap();
         controller.prepare(map);
@@ -183,6 +190,14 @@ public final class FlatcraftGame {
         
         controller.bindInventory(player.getInventaire());
  
+        RuleParser craftable = new RuleParser("craftrules.txt");
+        craftable.parse();
+        craftable.getObject();
+        RuleParser furnace = new RuleParser("furnacerules.txt");
+        furnace.parse();
+        furnace.getObject();
+        
+        
         animation.start();
     }
 
