@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.r304.flatcraft.controller.FlatcraftController;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.ComplicatedObject;
+import fr.univartois.butinfo.r304.flatcraft.model.craft.ProductRule;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
 import fr.univartois.butinfo.r304.flatcraft.model.map.IGenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
@@ -373,11 +375,29 @@ public final class FlatcraftGame {
      * @return La ressource produite.
      */
     public Resource craft(Resource[][] inputResources) {
-        // TODO Vous devez compléter cette méthode.
-        throw new UnsupportedOperationException("Pas encore implémentée !");
+    	String rule = "";
+    	for (int i = 0;i < inputResources.length ;i++) {
+    		for (int y = 0; y < inputResources[i].length; y++) {
+    			rule = rule+"_"+y;
+    		}
+    	}
+    	Resource newResource = null;
+    	ProductRule temp = null;
+    	temp.setRule(rule);
+
+    	if (craftableObject.produitOuExiste(temp) != null) {
+    		newResource = new Resource(craftableObject.produitOuExiste(temp), null, null, null);
+    	}
+    	else {
+    		FlatcraftController flatcraftController = new FlatcraftController();
+			flatcraftController.displayError("Error");
+    	}
+		
+		return newResource;
     }
 
-    /**
+
+	/**
      * Crée une nouvelle ressource à l'aide d'un combustible et d'une ressource, en suivant les
      * règles du fourneau.
      *
@@ -387,8 +407,24 @@ public final class FlatcraftGame {
      * @return La ressource produite.
      */
     public Resource cook(Resource fuel, Resource resource) {
-        // TODO Vous devez compléter cette méthode.
-        throw new UnsupportedOperationException("Pas encore implémentée !");
+    	if (!fuel.getName().equals("Bois")) {
+    		FlatcraftController flatcraftController = new FlatcraftController();
+			flatcraftController.displayError("pas combustible");
+    	}
+    	
+    	Resource newResource = null;
+    	ProductRule temp = null;
+    	temp.setRule(resource+"");
+
+    	if (furnaceObject.produitOuExiste(temp) != null) {
+    		newResource = new Resource(furnaceObject.produitOuExiste(temp), null, null, null);
+    	}
+    	else {
+    		FlatcraftController flatcraftController = new FlatcraftController();
+			flatcraftController.displayError("Error");
+    	}
+		
+		return newResource;
     }
 
 }
