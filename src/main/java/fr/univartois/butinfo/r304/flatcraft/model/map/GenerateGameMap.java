@@ -1,7 +1,8 @@
 package fr.univartois.butinfo.r304.flatcraft.model.map;
 
-import fr.univartois.butinfo.r304.flatcraft.model.CaseFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
+import fr.univartois.butinfo.r304.flatcraft.model.IGenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.dimension.CaseFactory;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 
 public class GenerateGameMap implements IGenerateGameMap {

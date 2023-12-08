@@ -1,8 +1,10 @@
-package fr.univartois.butinfo.r304.flatcraft.model;
+package fr.univartois.butinfo.r304.flatcraft.model.etat;
 
+import fr.univartois.butinfo.r304.flatcraft.model.BreakABlock;
+import fr.univartois.butinfo.r304.flatcraft.model.Cell;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.CelluleAvecRessource;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.IContenuCell;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.CelluleAvecRessource;
 
 public class PresqueCasse implements BreakABlock{
 

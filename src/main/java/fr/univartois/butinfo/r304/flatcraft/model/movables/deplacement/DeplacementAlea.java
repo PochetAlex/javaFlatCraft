@@ -1,5 +1,8 @@
-package fr.univartois.butinfo.r304.flatcraft.model.movables;
+package fr.univartois.butinfo.r304.flatcraft.model.movables.deplacement;
 import java.util.concurrent.ThreadLocalRandom;
+
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Strategie;
 
 
 public class DeplacementAlea implements Strategie {

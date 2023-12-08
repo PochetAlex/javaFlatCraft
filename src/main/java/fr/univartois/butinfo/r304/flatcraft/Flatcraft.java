@@ -19,8 +19,8 @@ package fr.univartois.butinfo.r304.flatcraft;
 import java.io.IOException;
 
 import fr.univartois.butinfo.r304.flatcraft.controller.FlatcraftController;
-import fr.univartois.butinfo.r304.flatcraft.model.CaseFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
+import fr.univartois.butinfo.r304.flatcraft.model.dimension.CaseFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Arbre;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Terril;

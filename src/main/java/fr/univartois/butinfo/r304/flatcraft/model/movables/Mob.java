@@ -1,6 +1,9 @@
 package fr.univartois.butinfo.r304.flatcraft.model.movables;
 
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.deplacement.DeplacementAlea;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.deplacement.DeplacementAleatoireParSequence;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.deplacement.DeplacementLineaire;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

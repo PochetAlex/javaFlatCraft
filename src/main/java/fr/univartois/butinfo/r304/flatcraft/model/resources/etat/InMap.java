@@ -1,5 +1,6 @@
-package fr.univartois.butinfo.r304.flatcraft.model.resources;
+package fr.univartois.butinfo.r304.flatcraft.model.resources.etat;
 
+import fr.univartois.butinfo.r304.flatcraft.model.resources.IEtatRessource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 
 public class InMap implements IEtatRessource{
