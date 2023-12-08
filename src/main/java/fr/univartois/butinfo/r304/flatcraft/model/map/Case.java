@@ -33,7 +33,6 @@ public class Case extends AbstractCell {
 	@Override
 	public boolean dig(IMovable player) {
 		if (this.getResource() != null) {
-			System.out.println(this.getResource().getHardness());
 			this.getResource().dig((Joueur) player, this);
 		}
 

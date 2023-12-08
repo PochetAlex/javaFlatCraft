@@ -6,6 +6,9 @@ import fr.univartois.butinfo.r304.flatcraft.model.movables.Strategie;
 
 
 public class DeplacementAlea implements Strategie {
+	private DeplacementAlea(){
+		
+	}
 
 	public static  int faconMove(double d, Mob mob, long delta) {
         int randInt1 = ThreadLocalRandom.current().nextInt();

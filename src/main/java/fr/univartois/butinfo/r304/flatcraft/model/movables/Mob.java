@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Mob extends AbstractMovable {
 
-	private IntegerProperty pdv;
+	public IntegerProperty pdv;
 	
 	private int faconMouv;
 
