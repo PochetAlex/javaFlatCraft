@@ -101,8 +101,6 @@ public interface Cell {
      *
      * @return Si une ressource a été extraite.
      */
-
-    // TODO Remplacez le type de ce paramètre par le type correspondant à votre joueur.
     boolean dig(IMovable player);
 
 	void setContenuCell(CompletementCasse completementCasse);
