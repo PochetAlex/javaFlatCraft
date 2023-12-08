@@ -21,6 +21,7 @@ public class Mob extends AbstractMovable {
 		setHorizontalSpeed(24);
 	}
 
+	@Override
 	public boolean move(long delta) {
 		if (!super.move(delta)) {
 			setHorizontalSpeed(DeplacementLineaire.faconMove(this.getHorizontalSpeed(), this, delta));

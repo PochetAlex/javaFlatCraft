@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class Terril implements IGenerateGameMap {
     private IGenerateGameMap mapBase;
-    private CellFactory cell;
     private int tailleLimite;
+    private static final Random RANDOM = new Random();
 
     public Terril(int tailleLimite, IGenerateGameMap mapBase) {
         this.mapBase = mapBase;
@@ -19,13 +19,13 @@ public class Terril implements IGenerateGameMap {
 
     @Override
     public SimpleGameMap returnMapCreate(ISpriteStore sprite) {
+        CellFactory cell;
         SimpleGameMap gameMap = mapBase.returnMapCreate(sprite);
-        this.cell = CaseFactory.getInstance();
+        cell = CaseFactory.getInstance();
 
-        Random r = new Random();
         int hauteurSol = gameMap.getSoilHeight();
         int hauteurCourante = hauteurSol - 1;
-        int largeurCourante = r.nextInt(5, gameMap.getWidth() - 15);
+        int largeurCourante = RANDOM.nextInt(5, gameMap.getWidth() - 15);
         
 
         for (int taille = tailleLimite; taille >= 1; taille -= 2) {

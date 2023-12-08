@@ -1,7 +1,5 @@
 package fr.univartois.butinfo.r304.flatcraft.model.dimension;
 
-import java.util.Random;
-
 import fr.univartois.butinfo.r304.flatcraft.model.Cell;
 import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.etat.PasCasse;
@@ -14,7 +12,6 @@ import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 
 public class DimensionNether implements CellFactory {
 	private ISpriteStore spriteStore;
-	private InInventarie invent;
     private static final DimensionNether INSTANCE = new DimensionNether(SpriteStore.getInstance()); 
 
     public DimensionNether(ISpriteStore spriteStore) {
@@ -31,43 +28,26 @@ public class DimensionNether implements CellFactory {
 	}
 	@Override
 	public Cell createSky(int y, int i) {
-		// TODO Auto-generated method stub
-		Random r = new Random();
-        int n = r.nextInt(5);
-        Case cel;
-        if (n < 2) {
-        	cel = new Case(spriteStore.getSprite("default_lava"));
-        }
-        else {
-        	cel = new Case(spriteStore.getSprite("default_lava"));
-        }
-		return cel;
+		return new Case(spriteStore.getSprite("default_lava"));
 	}
 
 	public Cell createSoilSurface() {
-        Case cel;
-		Resource re = new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_obsidian_brick"), null) ,null,new PasCasse());
-        cel = new Case(re);
-		return cel;
+		return new Case(new Resource("obsidian_brick",new InInventarie(spriteStore.getSprite("default_obsidian_brick"), null) ,null,new PasCasse()));
 	}
 
 	@Override
 	public Cell createSubSoil() {
-		// TODO Auto-generated method stub
-        Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_obsidian"),null),null,new PasCasse()));
-		return cel;
+		return new Case(new Resource("obsidian",new InInventarie(spriteStore.getSprite("default_obsidian"),null),null,new PasCasse()));
 	}
 
 	@Override
 	public Cell createTrunk() {
-		Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_acacia_tree"),null),null,new PresqueCasse()));
-		return cel;
+		return new Case(new Resource("acacia_tree",new InInventarie(spriteStore.getSprite("default_acacia_tree"),null),null,new PresqueCasse()));
 	}
 
 	@Override
 	public Cell createLeaves() {
-		Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),null,new PresqueCasse()));
-		return cel;
+		return new Case(new Resource("acacia_leave",new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),null,new PresqueCasse()));
 	}
 
 
