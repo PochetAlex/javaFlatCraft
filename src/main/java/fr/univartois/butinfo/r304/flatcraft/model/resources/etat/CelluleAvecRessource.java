@@ -1,9 +1,11 @@
-package fr.univartois.butinfo.r304.flatcraft.model.resources;
+package fr.univartois.butinfo.r304.flatcraft.model.resources.etat;
 
 import fr.univartois.butinfo.r304.flatcraft.model.BreakABlock;
 import fr.univartois.butinfo.r304.flatcraft.model.Cell;
-import fr.univartois.butinfo.r304.flatcraft.model.CompletementCasse;
+import fr.univartois.butinfo.r304.flatcraft.model.etat.CompletementCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.IContenuCell;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 
 public class CelluleAvecRessource implements IContenuCell, BreakABlock{
 	private Resource ressource;

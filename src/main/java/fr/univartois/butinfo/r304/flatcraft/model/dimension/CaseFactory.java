@@ -1,10 +1,13 @@
-package fr.univartois.butinfo.r304.flatcraft.model;
+package fr.univartois.butinfo.r304.flatcraft.model.dimension;
 
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
+import fr.univartois.butinfo.r304.flatcraft.model.Cell;
+import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
+import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.InInventarie;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.InInventarie;
 
 import java.util.Random;
 

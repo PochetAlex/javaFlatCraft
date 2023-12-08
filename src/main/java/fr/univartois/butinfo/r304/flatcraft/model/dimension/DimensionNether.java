@@ -1,23 +1,27 @@
-package fr.univartois.butinfo.r304.flatcraft.model;
+package fr.univartois.butinfo.r304.flatcraft.model.dimension;
 
 import java.util.Random;
 
+import fr.univartois.butinfo.r304.flatcraft.model.Cell;
+import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
+import fr.univartois.butinfo.r304.flatcraft.model.etat.PasCasse;
+import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.InInventarie;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.InInventarie;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 
-public class DimensionEnd implements CellFactory {
+public class DimensionNether implements CellFactory {
 	private ISpriteStore spriteStore;
 	private InInventarie invent;
-    private static final DimensionEnd INSTANCE = new DimensionEnd(SpriteStore.getInstance()); 
+    private static final DimensionNether INSTANCE = new DimensionNether(SpriteStore.getInstance()); 
 
-    DimensionEnd(ISpriteStore spriteStore) {
+    public DimensionNether(ISpriteStore spriteStore) {
         this.spriteStore = spriteStore;
     }
 
-    public static DimensionEnd getInstance() {
+    public static synchronized DimensionNether getInstance() {
         return INSTANCE;
     }
     
@@ -25,26 +29,24 @@ public class DimensionEnd implements CellFactory {
 	public void setSpriteStore(ISpriteStore spriteStore) {
 		this.spriteStore = spriteStore;	
 	}
-    
 	@Override
 	public Cell createSky(int y, int i) {
+		// TODO Auto-generated method stub
 		Random r = new Random();
         int n = r.nextInt(5);
         Case cel;
         if (n < 2) {
-        	cel = new Case(spriteStore.getSprite("default_coal_block"));
+        	cel = new Case(spriteStore.getSprite("default_lava"));
         }
         else {
-        	cel = new Case(spriteStore.getSprite("default_coal_block"));
+        	cel = new Case(spriteStore.getSprite("default_lava"));
         }
 		return cel;
 	}
 
-	@Override
 	public Cell createSoilSurface() {
-		// TODO Auto-generated method stub
         Case cel;
-        Resource re = new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_sandstone_brick"),null),null, new PasCasse());
+		Resource re = new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_obsidian_brick"), null) ,null,new PasCasse());
         cel = new Case(re);
 		return cel;
 	}
@@ -52,7 +54,7 @@ public class DimensionEnd implements CellFactory {
 	@Override
 	public Cell createSubSoil() {
 		// TODO Auto-generated method stub
-        Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_sandstone"),null),null,new PasCasse()));
+        Case cel = new Case(new Resource("a",invent = new InInventarie(spriteStore.getSprite("default_obsidian"),null),null,new PasCasse()));
 		return cel;
 	}
 
