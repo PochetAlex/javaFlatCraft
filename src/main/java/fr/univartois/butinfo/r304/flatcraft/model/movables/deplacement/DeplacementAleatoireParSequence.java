@@ -7,6 +7,11 @@ import fr.univartois.butinfo.r304.flatcraft.model.movables.Strategie;
 
 public class DeplacementAleatoireParSequence implements Strategie {
 	private static final Random RANDOM = new Random();
+	
+
+	private DeplacementAleatoireParSequence() {
+	}
+
 
 	public static int faconMove(double d, Mob mob, long delta) {
 		

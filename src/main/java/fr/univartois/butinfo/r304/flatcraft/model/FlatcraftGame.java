@@ -211,8 +211,8 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-    	GameMap map = iMap.returnMapCreate(spriteStore);
-        return map;
+    	GameMap maps = iMap.returnMapCreate(spriteStore);
+        return maps;
     }
 
     /**
@@ -338,13 +338,6 @@ public final class FlatcraftGame {
         }
     }
     
-    private DimensionNether createMapNether() {
-    	return new DimensionNether(spriteStore);
-    }
-    
-    private DimensionEnd createMapEnd() {
-    	return new DimensionEnd(spriteStore);
-    }
 
     /**
      * Récupére la cellule correspondant à la position d'un objet mobile.
