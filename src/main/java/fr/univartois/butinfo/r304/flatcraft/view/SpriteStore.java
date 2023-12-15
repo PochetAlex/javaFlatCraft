@@ -41,7 +41,7 @@ public final class SpriteStore implements ISpriteStore {
 	private final Map<String, Sprite> spriteCache = new HashMap<>();
 	private static final SpriteStore INSTANCE = new SpriteStore(); // Instance unique de la classe
 
-	private SpriteStore() {
+	public SpriteStore() {
         // Constructeur privé pour empêcher l'instanciation directe depuis l'extérieur.
     }
 	
