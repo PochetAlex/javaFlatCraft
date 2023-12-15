@@ -1,0 +1,2 @@
+JAVA_VERSION="19.0.2"
+MODULES="java.base flat.craft.merged.module java.datatransfer java.xml java.prefs java.desktop javafx.base jdk.unsupported javafx.graphics javafx.controls java.scripting javafx.fxml fr.univartois.butinfo.r304.flatcraft"

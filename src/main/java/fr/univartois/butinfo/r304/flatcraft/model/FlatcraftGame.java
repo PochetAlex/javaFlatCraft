@@ -383,7 +383,7 @@ public final class FlatcraftGame {
     		}
     	}
     	Resource newResource = null;
-    	ProductRule temp = null;
+    	ProductRule temp = new ProductRule();
     	temp.setRule(rule);
 
     	if (craftableObject.produitOuExiste(temp) != null) {
