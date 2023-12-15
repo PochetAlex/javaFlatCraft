@@ -123,8 +123,10 @@ public final class Resource implements Inventoriable {
      *         à {@code 0}.
      */
     public void dig(Joueur joueur, Cell cell) {
-        hardness = hardness.prochainEtat();
-        hardness.ajouterDansLinventaire(joueur,cell);
+    	if(joueur.getItemInHand().getToolType().compareTo(toolType) >= 0) {
+    		hardness = hardness.prochainEtat();
+            hardness.ajouterDansLinventaire(joueur,cell);
+    	}
     }
 
     /*
