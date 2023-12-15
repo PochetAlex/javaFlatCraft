@@ -19,6 +19,7 @@ package fr.univartois.butinfo.r304.flatcraft.controller;
 import java.util.Optional;
 
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ public final class CraftTableController {
     /**
      * Les ressources déposées sur la table de craft.
      */
-    private Resource[][] resources;
+    private Inventoriable[][] resources;
 
     /**
      * La grille représentant la table sur laquelle les ressources sont déposées.
@@ -65,7 +66,7 @@ public final class CraftTableController {
     /**
      * Le produit obtenu à l'issue du craft.
      */
-    private Resource product;
+    private Inventoriable product;
 
     /**
      * La vue représentant la ressource produite à l'issue du craft.
@@ -97,7 +98,7 @@ public final class CraftTableController {
     @FXML
     private void initialize() {
         // On initialise le tableau des ressources, qui est initialement vide.
-        this.resources = new Resource[craftGrid.getRowCount()][craftGrid.getColumnCount()];
+        this.resources = new Inventoriable[craftGrid.getRowCount()][craftGrid.getColumnCount()];
 
         // On initialise ensuite les vues pour ces ressources.
         this.resourceViews = new ImageView[craftGrid.getRowCount()][craftGrid.getColumnCount()];
@@ -243,7 +244,7 @@ public final class CraftTableController {
         for (int i = 0; i < resources.length; i++) {
             for (int j = 0; j < resources[i].length; j++) {
             	if (resources[i][j] != null) {
-            		game.getPlayer().ajouterElementInventaire(resources[i][j], 1);
+            		game.getPlayer().ajouterElementInventaire((Resource) resources[i][j], 1);
             	}
                 resources[i][j] = null;
                 resourceViews[i][j].setImage(null);
