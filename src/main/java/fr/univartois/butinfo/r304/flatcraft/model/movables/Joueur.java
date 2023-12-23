@@ -1,6 +1,5 @@
 package fr.univartois.butinfo.r304.flatcraft.model.movables;
 
-
 import java.util.Optional;
 
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
@@ -75,5 +74,4 @@ public class Joueur extends AbstractMovable {
         }
         return Optional.empty();
     }
-		
 }
