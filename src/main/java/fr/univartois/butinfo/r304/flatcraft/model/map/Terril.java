@@ -18,9 +18,9 @@ public class Terril implements IGenerateGameMap {
     }
 
     @Override
-    public SimpleGameMap returnMapCreate(ISpriteStore sprite) {
+    public SimpleGameMap returnMapCreate(ISpriteStore sprite ) {
         CellFactory cell;
-        SimpleGameMap gameMap = mapBase.returnMapCreate(sprite);
+        SimpleGameMap gameMap = mapBase.returnMapCreate(sprite );
         cell = CaseFactory.getInstance();
 
         int hauteurSol = gameMap.getSoilHeight();

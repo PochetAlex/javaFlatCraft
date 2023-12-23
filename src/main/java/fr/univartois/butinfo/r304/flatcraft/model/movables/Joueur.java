@@ -4,6 +4,7 @@ package fr.univartois.butinfo.r304.flatcraft.model.movables;
 import java.util.Optional;
 
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
@@ -14,7 +15,7 @@ import javafx.collections.ObservableMap;
 public class Joueur extends AbstractMovable {
 	private IntegerProperty exp;
 	private IntegerProperty pdv;
-	private ObservableMap<Resource, Integer> inventaire;
+	private ObservableMap<Inventoriable, Integer> inventaire;
 	public Joueur(FlatcraftGame game, double xPosition, double yPosition, Sprite sprite) {
 		super(game, xPosition, yPosition, sprite);
 		exp = new SimpleIntegerProperty(0);
@@ -37,9 +38,10 @@ public class Joueur extends AbstractMovable {
 		return pdv;
 	}
 	
-	public ObservableMap<Resource, Integer> getInventaire(){
+	public ObservableMap<Inventoriable, Integer> getInventaire(){
 		return inventaire;
 	}
+	
 	
 	public void setExp(int v) {
 		exp.set(v);
@@ -48,10 +50,10 @@ public class Joueur extends AbstractMovable {
 	public void setPdv(int v) {
 		pdv.set(v);
 	}
-	public void setInventaire(ObservableMap<Resource, Integer> inventaire) {
+	public void setInventaire(ObservableMap<Inventoriable, Integer> inventaire) {
 		this.inventaire = inventaire;
 	}
-	public void ajouterElementInventaire(Resource ressource, int quantite) {
+	public void ajouterElementInventaire(Inventoriable ressource, int quantite) {
 		if (inventaire.get(ressource) == null) {
 			inventaire.put(ressource, quantite);
 		}
@@ -59,14 +61,14 @@ public class Joueur extends AbstractMovable {
             inventaire.put(ressource, quantite+inventaire.get(ressource));
         }
 	}
-	public void supprimerElementInventaire(Resource ressource) {
-		        if (inventaire.get(ressource) == null || inventaire.get(ressource) <= 0) {
-		        	inventaire.remove(ressource);
+	public void supprimerElementInventaire(Inventoriable ressource) {
+		if (inventaire.get(ressource) == null || inventaire.get(ressource) <= 0) {
+			inventaire.remove(ressource);
         }
 	}
 	
-	public Optional<Resource> getRessourceParNom(String nomRessource) {
-        for (Resource ressource : inventaire.keySet()) {
+	public Optional<Inventoriable> getRessourceParNom(String nomRessource) {
+        for (Inventoriable ressource : inventaire.keySet()) {
             if (ressource.getName().equals(nomRessource)) {
                 return Optional.of(ressource);
             }

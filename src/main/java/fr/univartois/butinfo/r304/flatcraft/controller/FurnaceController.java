@@ -139,7 +139,7 @@ public final class FurnaceController {
             boolean success = false;
 
             if (dragboard.hasString() && dragboard.hasImage()) {
-                Optional<Resource> resource = game.getPlayer().getRessourceParNom(dragboard.getString());
+                Optional<Inventoriable> resource = game.getPlayer().getRessourceParNom(dragboard.getString());
                 if (resource.isPresent()) {
                     resources[index] = resource.get();
                     cookButton.setDisable(false);

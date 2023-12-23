@@ -5,6 +5,6 @@ import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 
 public interface IGenerateGameMap {
 
-	SimpleGameMap returnMapCreate(ISpriteStore sprite);
+	SimpleGameMap returnMapCreate(ISpriteStore sprite );
 
 }
