@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Mob extends AbstractMovable {
 
-	private IntegerProperty pdv;
+	public IntegerProperty pdv;
 	
 	private int faconMouv;
 
@@ -21,6 +21,7 @@ public class Mob extends AbstractMovable {
 		setHorizontalSpeed(24);
 	}
 
+	@Override
 	public boolean move(long delta) {
 		if (!super.move(delta)) {
 			setHorizontalSpeed(DeplacementLineaire.faconMove(this.getHorizontalSpeed(), this, delta));

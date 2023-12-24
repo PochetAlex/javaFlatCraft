@@ -138,6 +138,7 @@ public final class FlatcraftGame {
         this.cellFactory.setSpriteStore(spriteStore);
     }
 
+
     /**
      * Donne la largeur de la carte du jeu affichée (en pixels).
      *
@@ -204,6 +205,7 @@ public final class FlatcraftGame {
         controller.bindLevel(level);
         controller.bindXP(player.expProperty());
         controller.bindHealth(player.pdvProperty());
+        controller.bindLeftAnchor(leftAnchor);
         
         controller.bindInventory(player.getInventaire());
  
@@ -224,8 +226,8 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
-    	GameMap map = iMap.returnMapCreate(spriteStore);
-        return map;
+    	GameMap maps = iMap.returnMapCreate(spriteStore);
+        return maps;
     }
 
     /**
@@ -357,13 +359,6 @@ public final class FlatcraftGame {
         }
     }
     
-    private DimensionNether createMapNether() {
-    	return new DimensionNether(spriteStore);
-    }
-    
-    private DimensionEnd createMapEnd() {
-    	return new DimensionEnd(spriteStore);
-    }
 
     /**
      * Récupére la cellule correspondant à la position d'un objet mobile.

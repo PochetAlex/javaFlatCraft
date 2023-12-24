@@ -10,7 +10,7 @@ public class PresqueCasse implements BreakABlock{
 
 	@Override
 	public void ajouterDansLinventaire(Joueur joueur, Cell cell) {
-		//je met rien volontairement
+		//je ne met rien volontairement
 	}
 
 	@Override

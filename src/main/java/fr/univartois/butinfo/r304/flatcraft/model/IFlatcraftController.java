@@ -85,7 +85,7 @@ public interface IFlatcraftController {
      *
      * @param observableMap L'inventaire du joueur.
      */
-    void bindInventory(ObservableMap<Resource, Integer> observableMap);
+    void bindInventory(ObservableMap<Inventoriable, Integer> observableMap);
 
     /**
      * Ajoute un objet mobile à l'affichage du jeu.

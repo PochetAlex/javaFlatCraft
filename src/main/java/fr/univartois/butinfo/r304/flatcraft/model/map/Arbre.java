@@ -20,8 +20,8 @@ public class Arbre implements IGenerateGameMap {
     }
 
     @Override
-    public SimpleGameMap returnMapCreate(ISpriteStore sprite) {
-        SimpleGameMap gameMap = mapBase.returnMapCreate(sprite);
+    public SimpleGameMap returnMapCreate(ISpriteStore sprite ) {
+        SimpleGameMap gameMap = mapBase.returnMapCreate(sprite );
         this.cell = CaseFactory.getInstance();
 
         for (int arbre = 0; arbre < nombreArbres; arbre++) {

@@ -7,10 +7,9 @@ import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 
 public class GenerateGameMap implements IGenerateGameMap {
 
-	private int hauteur,largeur;
-	private CellFactory cell;
+	private int hauteur;
+	private int largeur;
 	private SimpleGameMap gameMap;
-	private ISpriteStore sprite;
 
 	public GenerateGameMap(int hauteur,int largeur) {
 		this.hauteur = hauteur;
@@ -20,8 +19,7 @@ public class GenerateGameMap implements IGenerateGameMap {
 	
 	@Override
 	public SimpleGameMap returnMapCreate(ISpriteStore sprite ) {
-		this.sprite = sprite;
-		this.cell = CaseFactory.getInstance();
+		CellFactory cell = CaseFactory.getInstance();
 		for(int i = 0; i<largeur; i++) {
 			for(int y=0; y< hauteur; y++) {
 				if(y>hauteur/2) {
