@@ -26,6 +26,8 @@ import fr.univartois.butinfo.r304.flatcraft.model.craft.ProductRule;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionEnd;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionNether;
+import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
@@ -226,6 +228,7 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
+    	setiMap(new GenerateGameMap(getHeight()/14,getWidth()/30));
     	GameMap maps = iMap.returnMapCreate(spriteStore);
         return maps;
     }

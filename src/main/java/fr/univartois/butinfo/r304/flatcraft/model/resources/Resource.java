@@ -152,4 +152,10 @@ public final class Resource implements Inventoriable {
         return false;
     }
 
+	@Override
+	public void addToInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
