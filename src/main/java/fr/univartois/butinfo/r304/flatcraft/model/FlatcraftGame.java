@@ -32,6 +32,7 @@ import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.NonCombustible;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
@@ -405,7 +406,7 @@ public final class FlatcraftGame {
     	temp.setRule(rule);
 
     	if (craftableObject.produitOuExiste(temp) != null) {
-    		newResource = new Resource(craftableObject.produitOuExiste(temp), null, null, null);
+    		newResource = new Resource(craftableObject.produitOuExiste(temp), null, null, null, new NonCombustible());
     	}
     	else {
     		FlatcraftController flatcraftController = new FlatcraftController();
@@ -426,7 +427,7 @@ public final class FlatcraftGame {
      * @return La ressource produite.
      */
     public Inventoriable cook(Inventoriable fuel, Inventoriable resource) {
-    	if (!fuel.getName().equals("Bois")) {
+    	if (!((Resource) fuel).isCombustible()) {
     		FlatcraftController flatcraftController = new FlatcraftController();
 			flatcraftController.displayError("pas combustible");
     	}
@@ -436,7 +437,7 @@ public final class FlatcraftGame {
     	temp.setRule(resource+"");
 
     	if (furnaceObject.produitOuExiste(temp) != null) {
-    		newResource = new Resource(furnaceObject.produitOuExiste(temp), null, null, null);
+    		newResource = new Resource(furnaceObject.produitOuExiste(temp), null, null, null, new NonCombustible());
     	}
     	else {
     		FlatcraftController flatcraftController = new FlatcraftController();
