@@ -49,5 +49,7 @@ public interface Inventoriable {
      * @return Le type d'outils à utiliser.
      */
     ToolType getToolType();
+    
+    void addToInventory();
 
 }
