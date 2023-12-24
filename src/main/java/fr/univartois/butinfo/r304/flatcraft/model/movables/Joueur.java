@@ -14,7 +14,7 @@ import javafx.collections.ObservableMap;
 public class Joueur extends AbstractMovable {
     private IntegerProperty exp;
     private IntegerProperty pdv;
-    private ObservableMap<Resource, Integer> inventaire;
+    private ObservableMap<Inventoriable , Integer> inventaire;
     private Inventoriable itemInHand;
 
     public Joueur(FlatcraftGame game, double xPosition, double yPosition, Sprite sprite) {
@@ -41,7 +41,7 @@ public class Joueur extends AbstractMovable {
         return pdv;
     }
 
-    public ObservableMap<Resource, Integer> getInventaire() {
+    public ObservableMap<Inventoriable , Integer> getInventaire() {
         return inventaire;
     }
 
@@ -57,7 +57,7 @@ public class Joueur extends AbstractMovable {
         pdv.set(v);
     }
 
-    public void setInventaire(ObservableMap<Resource, Integer> inventaire) {
+    public void setInventaire(ObservableMap<Inventoriable , Integer> inventaire) {
         this.inventaire = inventaire;
     }
 
@@ -80,8 +80,8 @@ public class Joueur extends AbstractMovable {
         }
     }
 
-    public Optional<Resource> getRessourceParNom(String nomRessource) {
-        for (Resource ressource : inventaire.keySet()) {
+    public Optional<Inventoriable > getRessourceParNom(String nomRessource) {
+        for (Inventoriable  ressource : inventaire.keySet()) {
             if (ressource.getName().equals(nomRessource)) {
                 return Optional.of(ressource);
             }

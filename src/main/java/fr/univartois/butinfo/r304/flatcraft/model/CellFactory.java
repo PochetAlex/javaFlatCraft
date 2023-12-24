@@ -74,5 +74,6 @@ public interface CellFactory {
      * @return La cellule créée.
      */
     Cell createLeaves();
+    
 
 }
