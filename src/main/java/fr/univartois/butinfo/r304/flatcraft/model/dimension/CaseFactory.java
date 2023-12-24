@@ -7,7 +7,10 @@ import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.ToolType;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.Combustible;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.InInventarie;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.NonCombustible;
 
 import java.util.Random;
 
@@ -46,41 +49,41 @@ public class CaseFactory implements CellFactory{
 
 	@Override
 	public Cell createSoilSurface() {
-		return new Case(new Resource("dirt",new InInventarie(spriteStore.getSprite("default_grass"),null),null,new PresqueCasse()));
+		return new Case(new Resource("dirt",new InInventarie(spriteStore.getSprite("default_grass"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
 	}
 
 	@Override
 	public Cell createSubSoil() {
         int n = RANDOM.nextInt(200);
         if (n < 190) {
-        	return new Case(new Resource("cobble",new InInventarie(spriteStore.getSprite("default_cobble"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("cobble",new InInventarie(spriteStore.getSprite("default_cobble"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 190) {
-        	return new Case(new Resource("mineral_diamond",new InInventarie(spriteStore.getSprite("default_mineral_diamond"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("mineral_diamond",new InInventarie(spriteStore.getSprite("default_mineral_diamond"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 191){
-        	return new Case(new Resource("mineral_gold",new InInventarie(spriteStore.getSprite("default_mineral_gold"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("mineral_gold",new InInventarie(spriteStore.getSprite("default_mineral_gold"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 192){
-        	return new Case(new Resource("mineral_copper",new InInventarie(spriteStore.getSprite("default_mineral_copper"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("mineral_copper",new InInventarie(spriteStore.getSprite("default_mineral_copper"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 193){
-        	return new Case(new Resource("mineral_mese",new InInventarie(spriteStore.getSprite("default_mineral_mese"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("mineral_mese",new InInventarie(spriteStore.getSprite("default_mineral_mese"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 194){
-        	return new Case(new Resource("mineral_coal",new InInventarie(spriteStore.getSprite("default_mineral_coal"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("mineral_coal",new InInventarie(spriteStore.getSprite("default_mineral_coal"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 195){
-        	return new Case(new Resource("mineral_iron",new InInventarie(spriteStore.getSprite("default_mineral_iron"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("mineral_iron",new InInventarie(spriteStore.getSprite("default_mineral_iron"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else if (n == 196){
-        	return new Case(new Resource("gravel",new InInventarie(spriteStore.getSprite("default_gravel"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("gravel",new InInventarie(spriteStore.getSprite("default_gravel"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         } else {
-        	return new Case(new Resource("cobble",new InInventarie(spriteStore.getSprite("default_cobble"),null),null,new PresqueCasse()));
+        	return new Case(new Resource("cobble",new InInventarie(spriteStore.getSprite("default_cobble"),null),ToolType.NO_TOOL,new PresqueCasse(), new NonCombustible()));
         }
 	}
 
 	@Override
 	public Cell createTrunk() {
-		return new Case(new Resource("acacia_tree",new InInventarie(spriteStore.getSprite("default_acacia_tree"),null),null,new PresqueCasse()));
+		return new Case(new Resource("tree",new InInventarie(spriteStore.getSprite("default_acacia_tree"),null),ToolType.NO_TOOL,new PresqueCasse(), new Combustible()));
 	}
 
 	@Override
 	public Cell createLeaves() {
-		return new Case(new Resource("acacia_leave",new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),null,new PresqueCasse()));
+		return new Case(new Resource("acacia_leave",new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),ToolType.NO_TOOL,new PresqueCasse(),new Combustible()));
 	}
 
 }

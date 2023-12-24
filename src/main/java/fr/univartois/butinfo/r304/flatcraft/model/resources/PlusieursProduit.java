@@ -8,7 +8,7 @@ import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 public class PlusieursProduit implements Inventoriable{
 	private List<Inventoriable> composants = new ArrayList<>();
 
-    // Ajoute un composant à la composition
+    // Ajoute un composant ï¿½ la composition
     public void addComponent(Inventoriable composant) {
         composants.add(composant);
     }
@@ -32,7 +32,7 @@ public class PlusieursProduit implements Inventoriable{
 
 	@Override
     public void addToInventory() {
-        // Ajoute chaque composant à l'inventaire
+        // Ajoute chaque composant ï¿½ l'inventaire
         composants.forEach(Inventoriable::addToInventory);
     }
 }

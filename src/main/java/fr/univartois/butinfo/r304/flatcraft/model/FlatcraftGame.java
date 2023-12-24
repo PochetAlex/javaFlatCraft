@@ -26,10 +26,16 @@ import fr.univartois.butinfo.r304.flatcraft.model.craft.ProductRule;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionEnd;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionNether;
+import fr.univartois.butinfo.r304.flatcraft.model.map.Arbre;
+import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
+import fr.univartois.butinfo.r304.flatcraft.model.map.Terril;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.InInventarie;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.NonCombustible;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
@@ -211,10 +217,10 @@ public final class FlatcraftGame {
  
         RuleParser craftable = new RuleParser("craftrules.txt");
         craftable.parse();
-        craftable.getObject();
+        craftableObject = craftable.getObject();
         RuleParser furnace = new RuleParser("furnacerules.txt");
         furnace.parse();
-        furnace.getObject();
+        furnaceObject = furnace.getObject();
         
         
         animation.start();
@@ -226,7 +232,10 @@ public final class FlatcraftGame {
      * @return La carte du jeu créée.
      */
     private GameMap createMap() {
+    	setiMap(new GenerateGameMap(getHeight()/14,getWidth()/30));
     	GameMap maps = iMap.returnMapCreate(spriteStore);
+    	Arbre arbre = new Arbre(1000, 5, iMap);
+    	arbre.returnMapCreate(spriteStore);
         return maps;
     }
 
@@ -390,11 +399,26 @@ public final class FlatcraftGame {
      * @return La ressource produite.
      */
 
-    public Inventoriable craft(Inventoriable[][] inputResources) {
+    
+	public Inventoriable craft(Inventoriable[][] inputResources) {
     	String rule = "";
     	for (int i = 0;i < inputResources.length ;i++) {
     		for (int y = 0; y < inputResources[i].length; y++) {
-    			rule = rule+"_"+y;
+    			if (i == 0 && y == 0) {
+    				rule = rule+"empty";
+    				continue;
+    			}
+    			if (i == 2 && y == 2) {
+    				rule = rule+"_empty";
+    				continue;
+    			}
+    			if (inputResources[i][y] != null) {
+    				rule = rule+"_"+inputResources[i][y].getName();
+    			}
+    			if (inputResources[i][y] == null) {
+    				rule = rule+"_empty";
+    			}
+    			
     		}
     	}
     	Resource newResource = null;
@@ -402,11 +426,13 @@ public final class FlatcraftGame {
     	temp.setRule(rule);
 
     	if (craftableObject.produitOuExiste(temp) != null) {
-    		newResource = new Resource(craftableObject.produitOuExiste(temp), null, null, null);
+    		newResource = new Resource(craftableObject.produitOuExiste(temp), new InInventarie(spriteStore.getSprite("default_tool_steelpick"), null), null, null, new NonCombustible());
+    		player.ajouterElementInventaire(newResource, 1);
+    		
     	}
     	else {
     		FlatcraftController flatcraftController = new FlatcraftController();
-			flatcraftController.displayError("Error");
+			flatcraftController.displayError(rule);
     	}
 		
 		return newResource;
@@ -423,7 +449,7 @@ public final class FlatcraftGame {
      * @return La ressource produite.
      */
     public Inventoriable cook(Inventoriable fuel, Inventoriable resource) {
-    	if (!fuel.getName().equals("Bois")) {
+    	if (!((Resource) fuel).isCombustible()) {
     		FlatcraftController flatcraftController = new FlatcraftController();
 			flatcraftController.displayError("pas combustible");
     	}
@@ -433,7 +459,7 @@ public final class FlatcraftGame {
     	temp.setRule(resource+"");
 
     	if (furnaceObject.produitOuExiste(temp) != null) {
-    		newResource = new Resource(furnaceObject.produitOuExiste(temp), null, null, null);
+    		newResource = new Resource(furnaceObject.produitOuExiste(temp), null, null, null, new NonCombustible());
     	}
     	else {
     		FlatcraftController flatcraftController = new FlatcraftController();

@@ -55,6 +55,8 @@ public final class Resource implements Inventoriable {
      * cette ressource depuis la map.
      */
     private BreakABlock hardness;
+    
+    private ICombustible combustible;
 
     /**
      * Crée une nouvelle instance de Resource.
@@ -66,12 +68,13 @@ public final class Resource implements Inventoriable {
      *
      * @throws IllegalArgumentException Si la valeur de {@code hardness} est négative.
      */
-    public Resource(String name, IEtatRessource sprite, ToolType toolType, BreakABlock hardness) {
+    public Resource(String name, IEtatRessource sprite, ToolType toolType, BreakABlock hardness, ICombustible combustible) {
 
         this.name = name;
         this.sprite = sprite;
         this.toolType = toolType;
         this.hardness = hardness;
+        this.combustible = combustible;
     }
 
     /*
@@ -151,5 +154,16 @@ public final class Resource implements Inventoriable {
         }
         return false;
     }
+
+	@Override
+	public void addToInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public boolean isCombustible() {
+		return combustible.isCombustible();
+		
+	}
 
 }

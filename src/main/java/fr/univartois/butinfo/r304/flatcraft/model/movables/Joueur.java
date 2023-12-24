@@ -5,6 +5,7 @@ import java.util.Optional;
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.ToolType;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -22,7 +23,7 @@ public class Joueur extends AbstractMovable {
         exp = new SimpleIntegerProperty(0);
         pdv = new SimpleIntegerProperty(100);
         inventaire = FXCollections.observableHashMap();
-        itemInHand = null;
+        itemInHand = new Resource( null, null, ToolType.NO_TOOL, null, null);
     }
 
     public int getExp() {

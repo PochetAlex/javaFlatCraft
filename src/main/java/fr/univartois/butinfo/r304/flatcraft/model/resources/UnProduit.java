@@ -28,4 +28,6 @@ public class UnProduit implements Inventoriable {
 		
 	}
 
+
+
 }
