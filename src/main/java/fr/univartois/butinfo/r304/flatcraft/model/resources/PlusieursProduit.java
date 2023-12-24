@@ -1,0 +1,38 @@
+package fr.univartois.butinfo.r304.flatcraft.model.resources;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
+
+public class PlusieursProduit implements Inventoriable{
+	private List<Inventoriable> composants = new ArrayList<>();
+
+    // Ajoute un composant à la composition
+    public void addComponent(Inventoriable composant) {
+        composants.add(composant);
+    }
+
+	@Override
+	public String getName() {
+		return null;
+	}
+
+	@Override
+	public Sprite getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ToolType getToolType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+    public void addToInventory() {
+        // Ajoute chaque composant à l'inventaire
+        composants.forEach(Inventoriable::addToInventory);
+    }
+}
