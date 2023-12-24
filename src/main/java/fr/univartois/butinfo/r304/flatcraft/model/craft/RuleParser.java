@@ -74,6 +74,7 @@ public final class RuleParser {
      */
     private void addRule(String rule, String product, int quantity) {
         // TODO Ajoutez ici le code propre à votre application pour gérer les règles.
+    	System.out.println(rule);
     	builder.withField(rule, product, quantity);
     }
     

@@ -12,11 +12,22 @@ public class ComplicatedObject {
 	
 	public String produitOuExiste(ProductRule product) {
         if (listeObjets.contains(product)) {
-            return product.getResultat();
+            for (int i = 0; i<listeObjets.size(); i++) {
+            	if (listeObjets.get(i).getRule().equals(product.getRule())) {
+            		return listeObjets.get(i).getResultat();
+            	}
+            }
         } else {
             return null;
         }
+		return null;
     }
+
+	public List<ProductRule> getListeObjets() {
+		return listeObjets;
+	}
+	
+	
 
 	
 }
