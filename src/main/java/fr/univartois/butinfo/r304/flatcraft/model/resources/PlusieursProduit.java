@@ -35,4 +35,10 @@ public class PlusieursProduit implements Inventoriable{
         // Ajoute chaque composant � l'inventaire
         composants.forEach(Inventoriable::addToInventory);
     }
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
 }

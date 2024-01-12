@@ -3,6 +3,7 @@ package fr.univartois.butinfo.r304.flatcraft.model.map;
 import fr.univartois.butinfo.r304.flatcraft.model.IMovable;
 import fr.univartois.butinfo.r304.flatcraft.model.etat.CompletementCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
 
@@ -41,6 +42,24 @@ public class Case extends AbstractCell {
 
 	@Override
 	public void setContenuCell(CompletementCasse completementCasse) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean setResource(Inventoriable resource) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean accepts(IMovable movable) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void execute() {
 		// TODO Auto-generated method stub
 		
 	}
