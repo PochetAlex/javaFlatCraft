@@ -469,8 +469,12 @@ public final class FlatcraftGame {
     	String rule = "";
     	for (int i = 0;i < inputResources.length ;i++) {
     		for (int y = 0; y < inputResources[i].length; y++) {
-    			if (i == 0 && y == 0) {
+    			if (i == 0 && y == 0 && inputResources[i][y] == null) {
     				rule = rule+"empty";
+    				continue;
+    			}
+    			if (i == 0 && y == 0 && inputResources[i][y] != null) {
+    				rule = rule+inputResources[i][y].getName();
     				continue;
     			}
     			if (i == 2 && y == 2) {
