@@ -55,7 +55,7 @@ public class Case extends AbstractCell {
 	@Override
 	public boolean accepts(IMovable movable) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
