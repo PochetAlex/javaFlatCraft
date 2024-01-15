@@ -1,11 +1,14 @@
 package fr.univartois.butinfo.r304.flatcraft.model.map;
 
+import fr.univartois.butinfo.r304.flatcraft.model.Cell;
+import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
 import fr.univartois.butinfo.r304.flatcraft.model.IMovable;
 import fr.univartois.butinfo.r304.flatcraft.model.etat.CompletementCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.Sprite;
+import fr.univartois.butinfo.r304.flatcraft.view.SpriteStore;
 
 public class Case extends AbstractCell {
 
@@ -48,8 +51,12 @@ public class Case extends AbstractCell {
 
 	@Override
 	public boolean setResource(Inventoriable resource) {
-		// TODO Auto-generated method stub
-		return false;
+        if (this.getColumn() != 0) {
+        	this.replaceBy(new Case(resource.getSprite()));
+        	return true;
+        }else {
+        	return false;
+        }
 	}
 
 	@Override
@@ -60,7 +67,7 @@ public class Case extends AbstractCell {
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub>
 		
 	}
 

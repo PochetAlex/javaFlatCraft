@@ -76,9 +76,7 @@ public class Joueur extends AbstractMovable {
     }
 
     public void supprimerElementInventaire(Resource ressource) {
-        if (inventaire.get(ressource) == null || inventaire.get(ressource) <= 0) {
-            inventaire.remove(ressource);
-        }
+    	inventaire.remove(ressource);
     }
 
     public Optional<Inventoriable > getRessourceParNom(String nomRessource) {
