@@ -1,5 +1,6 @@
 package fr.univartois.butinfo.r304.flatcraft.model.movables;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
@@ -89,4 +90,29 @@ public class Joueur extends AbstractMovable {
         }
         return Optional.empty();
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Joueur otherJoueur = (Joueur) obj;
+
+        // Compare relevant fields for equality
+        return exp.get() == otherJoueur.exp.get() &&
+               pdv.get() == otherJoueur.pdv.get() &&
+               inventaire.equals(otherJoueur.inventaire) &&
+               itemInHand.equals(otherJoueur.itemInHand);
+    }
+
+    @Override
+    public int hashCode() {
+        // Use relevant fields to calculate the hash code
+        return Objects.hash(exp.get(), pdv.get(), inventaire, itemInHand);
+    }
+
 }

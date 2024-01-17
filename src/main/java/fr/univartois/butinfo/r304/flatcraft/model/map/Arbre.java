@@ -12,6 +12,7 @@ public class Arbre implements IGenerateGameMap {
     private CellFactory cell;
     private int nombreArbres;
     private int hauteurMaxTronc;
+    public static final Random RANDOM = new Random();
 
     public Arbre(int nombreArbres, int hauteurMaxTronc, IGenerateGameMap mapBase) {
         this.mapBase = mapBase;
@@ -25,10 +26,10 @@ public class Arbre implements IGenerateGameMap {
         this.cell = CaseFactory.getInstance();
 
         for (int arbre = 0; arbre < nombreArbres; arbre++) {
-            Random r = new Random();
+            
             int hauteurSol = gameMap.getSoilHeight() - 1;
-            int position = r.nextInt(5, gameMap.getWidth() - 15);
-            int hauteurTronc = r.nextInt(1, hauteurMaxTronc);
+            int position = RANDOM.nextInt(5, gameMap.getWidth() - 15);
+            int hauteurTronc = RANDOM.nextInt(1, hauteurMaxTronc);
 
             for (int i = position; i < position + 1; i++) {
                 for (int y = hauteurSol; y > hauteurSol - hauteurTronc; y--) {

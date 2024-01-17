@@ -221,12 +221,16 @@ public final class FurnaceController {
      */
     @FXML
     private void clear() {
-    	if(resources[0] != null) game.getPlayer().ajouterElementInventaire((Resource) resources[0], 1);
-    	if(resources[1] != null) game.getPlayer().ajouterElementInventaire((Resource) resources[1], 1);
-        resources[0] = null;
-        fuelView.setImage(null);
-        resources[1] = null;
-        resourceView.setImage(null);
+    	if(resources[0] != null) {
+    	    game.getPlayer().ajouterElementInventaire((Resource) resources[0], 1);
+    	    resources[0] = null;
+    	    fuelView.setImage(null);
+    	}
+    	if(resources[1] != null) {
+    	    game.getPlayer().ajouterElementInventaire((Resource) resources[1], 1);
+    	    resources[1] = null;
+    	    resourceView.setImage(null);
+    	}
 
         // On met à jour les actions disponibles.
         cookButton.setDisable(true);

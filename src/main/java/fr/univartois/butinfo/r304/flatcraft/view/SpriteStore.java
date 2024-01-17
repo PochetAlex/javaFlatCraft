@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import fr.univartois.butinfo.r304.flatcraft.model.dimension.CaseFactory;
 import javafx.scene.image.Image;
 
 /**
