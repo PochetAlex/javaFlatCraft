@@ -6,7 +6,8 @@ public class NonCombustible implements ICombustible{
 
 	@Override
 	public boolean isCombustible() {
-		// TODO Auto-generated method stub
+		// pas besoin
+
 		return false;
 	}
 

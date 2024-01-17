@@ -26,7 +26,6 @@ import fr.univartois.butinfo.r304.flatcraft.model.GameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.IFlatcraftController;
 import fr.univartois.butinfo.r304.flatcraft.model.IMovable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.view.ResourceInInventory;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
@@ -406,7 +405,8 @@ public final class FlatcraftController implements IFlatcraftController {
         // Lorsque la ressource est déposée, elle est retirée de l'inventaire du joueur.
         resource.getNode().setOnDragDone(event -> {
             if (event.getAcceptingObject() != null) {
-                // TODO Retirer de l'inventaire du joueur la ressource qui a été déposée.
+        		// pas besoin
+
                 event.consume();
             }
         });

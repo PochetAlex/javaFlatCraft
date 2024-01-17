@@ -20,13 +20,15 @@ public class PlusieursProduit implements Inventoriable{
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
+		// pas besoin
+
 		return null;
 	}
 
 	@Override
 	public ToolType getToolType() {
-		// TODO Auto-generated method stub
+		// pas besoin
+
 		return null;
 	}
 
@@ -38,7 +40,8 @@ public class PlusieursProduit implements Inventoriable{
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		// pas besoin
+
 		
 	}
 }

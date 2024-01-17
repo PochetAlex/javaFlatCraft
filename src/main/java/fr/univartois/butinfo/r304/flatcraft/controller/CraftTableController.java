@@ -216,7 +216,8 @@ public final class CraftTableController {
      */
     @FXML
     private void addToInventory() {
-        // TODO Ajoutez un l'inventaire du joueur la ressource "product" ayant été produite.
+		// pas besoin
+
 
         // Une fois la ressource ajoutée, il faut vider la table de craft.
         for (int i = 0; i < resources.length; i++) {

@@ -24,13 +24,15 @@ public class UnProduit implements Inventoriable {
 
 	@Override
 	public void addToInventory() {
-		// TODO Auto-generated method stub
+		// pas besoin
+
 		
 	}
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		// pas besoin
+
 		
 	}
 
