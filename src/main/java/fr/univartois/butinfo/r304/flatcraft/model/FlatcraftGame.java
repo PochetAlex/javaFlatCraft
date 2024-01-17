@@ -17,7 +17,6 @@
 package fr.univartois.butinfo.r304.flatcraft.model;
 
 import java.io.IOException;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -27,13 +26,9 @@ import fr.univartois.butinfo.r304.flatcraft.controller.FlatcraftController;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.ComplicatedObject;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.ProductRule;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
-import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionEnd;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionNether;
-import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Arbre;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
-import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
-import fr.univartois.butinfo.r304.flatcraft.model.map.Terril;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
@@ -56,6 +51,9 @@ import javafx.collections.ObservableMap;
  * @version 0.1.0
  */
 public final class FlatcraftGame {
+	
+	private static DimensionNether netherDimension;
+
 
 	private IGenerateGameMap iMap;
 	
@@ -154,14 +152,18 @@ public final class FlatcraftGame {
      *        {@link Sprite} du jeu.
      * @param factory La fabrique permettant de créer les cellules du jeux.
      */
-    public FlatcraftGame(int width, int height, int mapRepeat, ISpriteStore spriteStore,
-            CellFactory factory) {
+    public FlatcraftGame(int width, int height, int mapRepeat, ISpriteStore spriteStore, CellFactory factory) {
         this.width = width;
         this.height = height;
         this.mapRepeat = mapRepeat;
         this.spriteStore = spriteStore;
         this.cellFactory = factory;
         this.cellFactory.setSpriteStore(spriteStore);
+        
+    }
+    
+    public static DimensionNether getNetherDimension() {
+    	return netherDimension;
     }
 
 
@@ -174,8 +176,6 @@ public final class FlatcraftGame {
         return width * mapRepeat;
     }
     
-    
-
 	public Joueur getPlayer() {
 		return player;
 	}
@@ -210,6 +210,7 @@ public final class FlatcraftGame {
         // On crée la carte du jeu.
         map = createMap();
         controller.prepare(map);
+        netherDimension = new DimensionNether(spriteStore);
         
         player = new Joueur(this, 0, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("player"));
         movableObjects.add(player);
@@ -245,8 +246,12 @@ public final class FlatcraftGame {
         
         animation.start();
         Resource pickaxe = new Resource("pioche", new InInventarie(spriteStore.getSprite("default_tool_woodpick"),null), ToolType.MEDIUM_TOOL, null, null);
+        Resource portail = new Resource("portail", new InInventarie(spriteStore.getSprite("default_mese_block"),null), ToolType.MEDIUM_TOOL, null, null);
         player.ajouterElementInventaire(pickaxe, 1);
         player.setItemInHand(pickaxe);
+        
+        player.ajouterElementInventaire(portail, 1);
+        player.setItemInHand(portail);
     }
 
 	/**
@@ -254,7 +259,7 @@ public final class FlatcraftGame {
      *
      * @return La carte du jeu créée.
      */
-    private GameMap createMap() {
+    public GameMap createMap() {
     	setiMap(new GenerateGameMap(getHeight()/14,getWidth()/30));
     	GameMap maps = iMap.returnMapCreate(spriteStore);
     	Arbre arbre = new Arbre(1000, 5, iMap);
@@ -597,6 +602,24 @@ public final class FlatcraftGame {
             Cell cell = next.get();
             cell.execute();
         }
+    }
+
+	
+    public void teleportToNether(Joueur player) {
+        // Sauvegardez la position actuelle du joueur
+        int currentPlayerX = player.getX();
+        int currentPlayerY = player.getY();
+
+        // Sauvegardez la carte actuelle
+        GameMap currentMap = map;
+        GameMap netherMap = iMap.returnMapCreate(spriteStore);
+
+        // Positionnez le joueur dans la dimension Nether
+        player.setY(currentPlayerY);
+        player.setX(currentPlayerX);
+
+        controller.prepare(netherMap);
+        controller.bindLeftAnchor(leftAnchor);
     }
 
 }

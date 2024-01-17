@@ -2,9 +2,12 @@ package fr.univartois.butinfo.r304.flatcraft.model.dimension;
 
 import fr.univartois.butinfo.r304.flatcraft.model.Cell;
 import fr.univartois.butinfo.r304.flatcraft.model.CellFactory;
+import fr.univartois.butinfo.r304.flatcraft.model.FlatcraftGame;
+import fr.univartois.butinfo.r304.flatcraft.model.GameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.etat.PasCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Case;
+import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.Combustible;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.InInventarie;
@@ -19,7 +22,7 @@ public class DimensionNether implements CellFactory {
     public DimensionNether(ISpriteStore spriteStore) {
         this.spriteStore = spriteStore;
     }
-
+    
     public static synchronized DimensionNether getInstance() {
         return INSTANCE;
     }
@@ -51,6 +54,4 @@ public class DimensionNether implements CellFactory {
 	public Cell createLeaves() {
 		return new Case(new Resource("acacia_leave",new InInventarie(spriteStore.getSprite("default_acacia_leaves"),null),null,new PresqueCasse(), new NonCombustible()));
 	}
-
-
 }
