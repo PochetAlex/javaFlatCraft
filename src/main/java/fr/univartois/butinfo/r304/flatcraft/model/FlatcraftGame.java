@@ -29,6 +29,7 @@ import fr.univartois.butinfo.r304.flatcraft.model.craft.ProductRule;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionEnd;
 import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionNether;
+import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Arbre;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
 import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
@@ -37,6 +38,7 @@ import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
+import fr.univartois.butinfo.r304.flatcraft.model.resources.ToolType;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.InInventarie;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.etat.NonCombustible;
 import fr.univartois.butinfo.r304.flatcraft.view.ISpriteStore;
@@ -242,6 +244,9 @@ public final class FlatcraftGame {
         
         
         animation.start();
+        Resource pickaxe = new Resource("pioche", new InInventarie(spriteStore.getSprite("default_tool_woodpick"),null), ToolType.MEDIUM_TOOL, null, null);
+        player.ajouterElementInventaire(pickaxe, 1);
+        player.setItemInHand(pickaxe);
     }
 
 	/**
@@ -558,9 +563,10 @@ public final class FlatcraftGame {
         // Le dépôt ne peut fonctionner que si la cellule ne contient pas de ressource.
         Cell target = next.get();
         // TODO Récupérer la ressource que le joueur a actuellement en main.
-        Inventoriable inHand = null;
+        Inventoriable inHand = player.getItemInHand();
         if (target.setResource(inHand)) {
             // TODO Retirer la ressource de l'inventaire du joueur.
+        	player.supprimerElementInventaire((Resource) inHand);
             switchResource();
         }
     }
@@ -572,12 +578,13 @@ public final class FlatcraftGame {
     public void switchResource() {
         if ((inventoryIterator == null) || (!inventoryIterator.hasNext())) {
             // TODO Récupérer l'inventaire du joueur.
-            ObservableMap<Inventoriable, Integer> inventory = null;
+            ObservableMap<Inventoriable, Integer> inventory = player.getInventaire();
             inventoryIterator = inventory.keySet().iterator();
         }
 
         Inventoriable inHand = inventoryIterator.next();
         // TODO Remplacer l'objet dans la main du joueur par inHand.
+        player.setItemInHand(inHand);
     }
 
     /**
