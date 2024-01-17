@@ -27,13 +27,8 @@ import fr.univartois.butinfo.r304.flatcraft.controller.FlatcraftController;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.ComplicatedObject;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.ProductRule;
 import fr.univartois.butinfo.r304.flatcraft.model.craft.RuleParser;
-import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionEnd;
-import fr.univartois.butinfo.r304.flatcraft.model.dimension.DimensionNether;
-import fr.univartois.butinfo.r304.flatcraft.model.etat.PresqueCasse;
 import fr.univartois.butinfo.r304.flatcraft.model.map.Arbre;
 import fr.univartois.butinfo.r304.flatcraft.model.map.GenerateGameMap;
-import fr.univartois.butinfo.r304.flatcraft.model.map.SimpleGameMap;
-import fr.univartois.butinfo.r304.flatcraft.model.map.Terril;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Joueur;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
@@ -115,7 +110,7 @@ public final class FlatcraftGame {
      */
     private Joueur player;
     
-    private Mob mob;
+    
     
     private ComplicatedObject craftableObject;
     
@@ -207,25 +202,31 @@ public final class FlatcraftGame {
      * @throws IOException 
      */
     public void prepare() throws IOException {
+    	
+    	Mob mob;
         // On crée la carte du jeu.
         map = createMap();
         controller.prepare(map);
         
-        player = new Joueur(this, 0, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("player"));
+        player = new Joueur(this, 0, (double)(map.getSoilHeight()) * SpriteStore.getInstance().getSpriteSize() - SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("player"));
         movableObjects.add(player);
         controller.addMovable(player);
+
         
-        mob = new Mob(this, 50, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("marjo"), 50, 0);
+        mob = new Mob(this, 50, (double)(map.getSoilHeight())*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("marjo"), 50, 0);
         movableObjects.add(mob);
         controller.addMovable(mob);
+
         
-        mob = new Mob(this, 150, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("hugo2"), 50, 1);
+        mob = new Mob(this, 150, (double)(map.getSoilHeight())*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("hugo2"), 50, 1);
         movableObjects.add(mob);
         controller.addMovable(mob);
+
         
-        mob = new Mob(this, 300, map.getSoilHeight()*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("caro"), 50, 2);
+        mob = new Mob(this, 300, (double)(map.getSoilHeight())*SpriteStore.getInstance().getSpriteSize()-SpriteStore.getInstance().getSpriteSize(), spriteStore.getSprite("caro"), 50, 2);
         movableObjects.add(mob);
         controller.addMovable(mob);
+
         
         controller.bindTime(time);
         controller.bindLevel(level);
@@ -274,14 +275,16 @@ public final class FlatcraftGame {
      * Fait se déplacer le joueur vers le haut.
      */
     public void moveUp() {
-        // TODO Implémentez cette méthode.
+		// pas besoin
+
     }
 
     /**
      * Fait se déplacer le joueur vers le bas.
      */
     public void moveDown() {
-        // TODO Implémentez cette méthode.
+		// pas besoin
+
     }
 
     /**
@@ -292,7 +295,8 @@ public final class FlatcraftGame {
         player.setHorizontalSpeed(-60);
         move(player);
 
-        // TODO Implémentez cette méthode.
+		// pas besoin
+
         lastDirection = -1;
 
     }
@@ -305,7 +309,8 @@ public final class FlatcraftGame {
     	player.setHorizontalSpeed(+60);
     	move(player);
 
-        // TODO Implémentez cette méthode.
+		// pas besoin
+
         lastDirection = 1;
     }
 
@@ -342,14 +347,16 @@ public final class FlatcraftGame {
      * Fait sauter le joueur.
      */
     public void jump() {
-        // TODO Cette méthode vous sera fournie ultérieurement.
+		// pas besoin
+
     }
 
     /**
      * Fait creuser le joueur vers le haut.
      */
     public void digUp() {
-        // TODO Nous reviendrons plus tard sur cette méthode.
+		// pas besoin
+
     }
 
     /**
@@ -470,7 +477,51 @@ public final class FlatcraftGame {
 
 
     
-	public Inventoriable craft(Inventoriable[][] inputResources) {
+    public Inventoriable craft(Inventoriable[][] inputResources) {
+        String rule = buildCraftRule(inputResources);
+        return createResourceBasedOnRule(rule);
+    }
+
+    private String buildCraftRule(Inventoriable[][] inputResources) {
+        StringBuilder ruleBuilder = new StringBuilder();
+
+        for (int i = 0; i < inputResources.length; i++) {
+            for (int y = 0; y < inputResources[i].length; y++) {
+                appendCraftRuleElement(ruleBuilder, i, y, inputResources[i][y]);
+            }
+        }
+
+        return ruleBuilder.toString();
+    }
+
+    private void appendCraftRuleElement(StringBuilder ruleBuilder, int i, int y, Inventoriable resource) {
+        if ((i == 0 && y == 0) || (i == 2 && y == 2)) {
+            ruleBuilder.append("empty");
+        } else {
+            ruleBuilder.append("_");
+            ruleBuilder.append(resource != null ? resource.getName() : "empty");
+        }
+    }
+
+    private Resource createResourceBasedOnRule(String rule) {
+        Resource newResource = null;
+        ProductRule temp = new ProductRule();
+        temp.setRule(rule);
+
+        if (craftableObject.produitOuExiste(temp) != null) {
+            newResource = new Resource(craftableObject.produitOuExiste(temp), new InInventarie(spriteStore.getSprite("default_tool_steelpick"), null), null, null, new NonCombustible());
+            player.ajouterElementInventaire(newResource, 1);
+        } else {
+            FlatcraftController flatcraftController = new FlatcraftController();
+            flatcraftController.displayError(rule);
+        }
+
+        return newResource;
+    }
+
+    
+    /* ancien fonction craft changé pour la factorisation
+    public Inventoriable craft(Inventoriable[][] inputResources) {
     	String rule = "";
     	for (int i = 0;i < inputResources.length ;i++) {
     		for (int y = 0; y < inputResources[i].length; y++) {
@@ -498,7 +549,6 @@ public final class FlatcraftGame {
     	Resource newResource = null;
     	ProductRule temp = new ProductRule();
     	temp.setRule(rule);
-
     	if (craftableObject.produitOuExiste(temp) != null) {
     		newResource = new Resource(craftableObject.produitOuExiste(temp), new InInventarie(spriteStore.getSprite("default_tool_steelpick"), null), null, null, new NonCombustible());
     		player.ajouterElementInventaire(newResource, 1);
@@ -510,7 +560,11 @@ public final class FlatcraftGame {
     	}
 		
 		return newResource;
-}
+	}
+    */
+
+
+
 
 
 	/**
@@ -534,7 +588,7 @@ public final class FlatcraftGame {
     	}
     	
     	Resource newResource = null;
-    	ProductRule temp = null;
+    	ProductRule temp = new ProductRule();
     	temp.setRule(resource+"");
 
     	if (furnaceObject.produitOuExiste(temp) != null) {
@@ -562,10 +616,12 @@ public final class FlatcraftGame {
 
         // Le dépôt ne peut fonctionner que si la cellule ne contient pas de ressource.
         Cell target = next.get();
-        // TODO Récupérer la ressource que le joueur a actuellement en main.
+		// pas besoin
+
         Inventoriable inHand = player.getItemInHand();
         if (target.setResource(inHand)) {
-            // TODO Retirer la ressource de l'inventaire du joueur.
+    		// pas besoin
+
         	player.supprimerElementInventaire((Resource) inHand);
             switchResource();
         }
@@ -577,13 +633,15 @@ public final class FlatcraftGame {
      */
     public void switchResource() {
         if ((inventoryIterator == null) || (!inventoryIterator.hasNext())) {
-            // TODO Récupérer l'inventaire du joueur.
+    		// pas besoin
+
             ObservableMap<Inventoriable, Integer> inventory = player.getInventaire();
             inventoryIterator = inventory.keySet().iterator();
         }
 
         Inventoriable inHand = inventoryIterator.next();
-        // TODO Remplacer l'objet dans la main du joueur par inHand.
+		// pas besoin
+
         player.setItemInHand(inHand);
     }
 

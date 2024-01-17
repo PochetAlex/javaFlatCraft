@@ -1,7 +1,6 @@
 package fr.univartois.butinfo.r304.flatcraft.model.movables.deplacement;
 import java.util.concurrent.ThreadLocalRandom;
 
-import fr.univartois.butinfo.r304.flatcraft.model.movables.Mob;
 import fr.univartois.butinfo.r304.flatcraft.model.movables.Strategie;
 
 
@@ -10,7 +9,7 @@ public class DeplacementAlea implements Strategie {
 		
 	}
 
-	public static  int faconMove(double d, Mob mob, long delta) {
+	public static  int faconMove() {
         int randInt1 = ThreadLocalRandom.current().nextInt();
 		
 		if (randInt1 > 0) {

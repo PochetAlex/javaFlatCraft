@@ -254,6 +254,8 @@ public abstract class AbstractMovable implements IMovable {
 
         xPosition.set(newX);
         yPosition.set(newY);
+        
+        /*
 
         if ((newX == 0) || (newX == limitMaxX)) {
             // L'objet a atteint la limite sur l'axe x.
@@ -267,6 +269,11 @@ public abstract class AbstractMovable implements IMovable {
 
         // L'objet n'a atteint aucune limite
         return true;
+        */
+        
+        return game.getCellAt((int) newX, (int) newY).accepts(this) &&
+     	       !(newX == 0 || newX == limitMaxX || newY == 0 || newY == limitMaxY);
+
     }
 
     /**
