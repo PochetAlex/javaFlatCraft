@@ -247,6 +247,7 @@ public abstract class AbstractMovable implements IMovable {
         int limitMaxY = game.getHeight() - getHeight();
         double newY = updatePosition(yPosition.get(), verticalSpeed, delta, 0, limitMaxY);
 
+        /* meme return mais savec/sans explication
         // On vérifie qu'il n'y a pas un obstacle.
         if (!game.getCellAt((int) newX, (int) newY).accepts(this)) {
             return false;
@@ -264,9 +265,15 @@ public abstract class AbstractMovable implements IMovable {
             // L'objet a atteint la limite sur l'axe y.
             return false;
         }
+        // Produit une erreur sonarLink mais c'est fait expres pour plus de compréhension
 
         // L'objet n'a atteint aucune limite
         return true;
+        */
+        
+        return game.getCellAt((int) newX, (int) newY).accepts(this) &&
+        	       !(newX == 0 || newX == limitMaxX || newY == 0 || newY == limitMaxY);
+
     }
 
     /**

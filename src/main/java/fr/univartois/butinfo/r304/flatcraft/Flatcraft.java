@@ -67,7 +67,6 @@ public final class Flatcraft extends Application {
         controller.setStage(stage);
 
         // On crée ensuite le jeu, que l'on lie au contrôleur.
-        // TODO Utiliser ici la bonne factory pour créer les objets du jeu.
 
 
     	

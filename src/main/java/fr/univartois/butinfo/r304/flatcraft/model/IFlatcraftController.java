@@ -17,7 +17,6 @@
 package fr.univartois.butinfo.r304.flatcraft.model;
 
 import fr.univartois.butinfo.r304.flatcraft.model.resources.Inventoriable;
-import fr.univartois.butinfo.r304.flatcraft.model.resources.Resource;
 import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableMap;
 
